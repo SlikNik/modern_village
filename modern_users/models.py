@@ -10,6 +10,10 @@ class ModernUsers(AbstractUser):
     address = models.CharField(max_length=120)
     city = models.CharField(max_length=80)
     zipcode = models.CharField(max_length=10)
+    phone = models.BigIntegerField()
+    facebook = models.URLField()
+    instagram = models.URLField()
+    twitter = models.URLField()
     REQUIRED_FIELDS = ['first_name', 'last_name', 'email', 'address', 'city', 'zipcode', 'age', 'birthday']
 
     def __str__(self):
