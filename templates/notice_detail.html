@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<p>
+    {% if notice.is_urgent %}
+        <h4 style="color: red;">Urgent-{{notice.type_of}}</h4>
+    {% else %}
+       <h4>{{notice.type_of}}</h4>
+    {% endif %}
+</p>
+<p>
+    {{notice.creator}}
+</p>
+<p>
+    {{notice.title}}
+</p>
+<p>
+    {{notice.body}}
+</p>
+<p>
+ {{notice.post_date}}
+</p>
+{% endblock %}

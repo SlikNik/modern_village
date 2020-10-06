@@ -8,13 +8,19 @@
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
         integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
-    <title>Hierarhical Data and You</title>
+    <title>Modern Village</title>
 </head>
 
 <body>
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/notices/">Notices</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/posts/">Chat</a>
         </li>
         {% if request.user.is_authenticated %}
             <li class="nav-item">
@@ -30,12 +36,6 @@
                 <a class="nav-link" href="/logout/">Logout</a>
             </li>
         {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="/notices/">Notices</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/posts/">Post</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/login/">Login</a>
             </li>

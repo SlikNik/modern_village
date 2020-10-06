@@ -20,6 +20,9 @@ from notices import views as noticeviews
 
 urlpatterns = [
     path('', noticeviews.index_view, name='homepage'),
+    path('notice/<int:id>/edit/', noticeviews.notice_edit, name='editnotice'),  
+    path('notice/<int:id>/', noticeviews.notice_detail, name='noticedetails'),
+    path('notices/', noticeviews.notice_sorted_view, name='noticesorted'),
     path('ownernotices/', noticeviews.owner_notice_view, name='ownernotices'),
     path('addnotice/', noticeviews.add_notice, name='addnotice'),
     path('login/', authenticateviews.login_view, name="loginview"),
