@@ -50,7 +50,7 @@ def notice_edit(request, id):
             current_notice.price = new_notice['price']
             current_notice.is_urgent = new_notice['is_urgent']
             current_notice.save()
-        return HttpResponseRedirect(reverse('noticedetials', args=[current_notice.id]))
-    form = AddTicketForm(initial={'title' : current_notice.title, 'body': current_notice.body, 
+        return HttpResponseRedirect(reverse('noticedetails', args=[current_notice.id]))
+    form = AddNoticeForm(initial={'title' : current_notice.title, 'body': current_notice.body, 
                          'price': current_notice.price, 'type_of': current_notice.type_of, 'is_urgent': current_notice.is_urgent})
     return render(request, 'generic_form.html', {'form': form})

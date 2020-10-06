@@ -8,9 +8,9 @@
     {% for notice in data %}
         <p>
             {% if notice.is_urgent %}
-                <h4 style="color: red;">Urgent-{{notice.type_of}}</h4>
+                <h4><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h4>
             {% else %}
-               <h4>{{notice.type_of}}</h4>
+               <h4><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h4>
             {% endif %}
         </p>
         <p>
@@ -25,6 +25,7 @@
         <p>
          {{notice.post_date}}
         </p>
+        <button><a href="/notice/{{notice.id}}/edit/">Edit</a></button>
         <hr style='border: 1px dashed black;'/>
     {% endfor %}
 </div>
@@ -49,6 +50,7 @@
         <p>
          {{notice.post_date}}
         </p>
+        <button><a href="/notice/{{notice.id}}/edit/">Edit</a></button>
         <hr style='border: 1px dashed black;'/>
     {% endfor %}
 </div>
@@ -73,6 +75,7 @@
         <p>
          {{notice.post_date}}
         </p>
+        <button><a href="/notice/{{notice.id}}/edit/">Edit</a></button>
         <hr style='border: 1px dashed black;'/>
     {% endfor %}
 </div>
