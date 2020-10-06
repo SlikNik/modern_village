@@ -1,4 +1,4 @@
-#!/Users/nikalmorgan/Desktop/Kenzie/submitted/Q4/capstone/modern_village/.venv/bin/python
+#!/Users/joannamollman/kenzieprojects/fourth_quarter/modern_village/.venv/bin/python
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
