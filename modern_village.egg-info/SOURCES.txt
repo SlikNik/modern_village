@@ -1,0 +1,12 @@
+README.md
+setup.py
+modern_village/__init__.py
+modern_village/asgi.py
+modern_village/settings.py
+modern_village/urls.py
+modern_village/wsgi.py
+modern_village.egg-info/PKG-INFO
+modern_village.egg-info/SOURCES.txt
+modern_village.egg-info/dependency_links.txt
+modern_village.egg-info/requires.txt
+modern_village.egg-info/top_level.txt
