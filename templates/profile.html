@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <h1>Welcome {{ user.name }}</h1>
+
+    <h2>notifications</h2>
+
+    <ul>
+        {{ for type in post }}
+        <li>
+            {{ type }}
+            <ul>
+                {{ for post in type }}
+                <li>
+                    {{ post }}
+                </li>
+                {{ endfor }}
+            </ul>
+        </li>
+        {{ endfor }}
+    </ul>
+
+    <h2>Local Posts</h2>
+
+    <ul>
+        {{ for zipcode in post.zipcode }}
+            {{ if zipcode == user.zipcode }}
+            <li>{{ post }}</li>
+            {{ endif }}
+        {{ endfor }}
+    </ul>
+</div>
+{% endblock %}
