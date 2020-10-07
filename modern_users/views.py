@@ -8,8 +8,6 @@ from notices.models import Notice
 
 from post.models import Post
 
-# Received help from Matt Perry and Peter Marsh on many little errors throughout the code.
-# Got guidance from StackOverFlow about ManyToManyField
 
 @login_required
 def index(request):
