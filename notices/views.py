@@ -8,12 +8,27 @@ from notices.forms import AddNoticeForm
 def index_view(request):
     return render(request, 'index.html', {'data': Notice.objects.all().order_by('-post_date')})
 
-def notice_sorted_view(request):
-    return render(request, 'index.html', {'newdata': Notice.objects.filter(is_urgent=True), 'olddata': Notice.objects.filter(is_urgent=False)})
+def urgent_notices(request):
+    return render(request, 'index.html', {'newdata': Notice.objects.filter(is_urgent=True)})
+
+def event_notices(request):
+    return render(request, 'index.html', {'newdata': Notice.objects.filter(type_of='EVENT')})
+
+def news_notices(request):
+    return render(request, 'index.html', {'newdata': Notice.objects.filter(type_of='NEWS')})
+
+def traffic_notices(request):
+    return render(request, 'index.html', {'newdata': Notice.objects.filter(type_of='TRAFFIC')})
+
+def alert_notices(request):
+    return render(request, 'index.html', {'newdata': Notice.objects.filter(type_of='ALERT')})
+
+def other_notices(request):
+    return render(request, 'index.html', {'newdata': Notice.objects.filter(type_of='OTHER')})
 
 def notice_detail(request, id):
     current_notice = Notice.objects.filter(id=id).first()
-    return render(request, 'notice_detail.html', {'data': current_notice})
+    return render(request, 'notice_detail.html', {'notice': current_notice})
 
 @login_required
 def owner_notice_view(request):
