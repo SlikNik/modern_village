@@ -1,18 +1,10 @@
 {% extends "base.html" %}
-{% load mptt_tags %}
 {% block content %}
-<h1>Modern Village</h1>
-<p>We know it always takes a village!</p>
-<ul>
-    {% recursetree data %}
-        <li>
-            {{ node.name }}
-            {% if not node.is_leaf_node %}
-                <ul class='children'>
-                    {{ children }}
-                </ul>
-            {% endif %}
-        </li>
-    {% endrecursetree %}
-</ul>
+<div class="hero-image">
+    <div class="hero-text">
+        <h2>Welcome to the Modern Village!<span class="icon-emo-happy" style="color: orangered;"></span></h2>
+        <p class="lead">
+        If you already have an account, go ahead and <a href="{% url 'login' %}" style="color: orange;">log in</a>. If you are new to the village, get started
+        by creating a <a href="{% url 'employee_signup' %}" style="color: orange;">an account</a>.
+        </p>
 {% endblock %}

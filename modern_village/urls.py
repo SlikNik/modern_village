@@ -19,9 +19,6 @@ from authentication import views as authenticateviews
 from notices import views as noticeviews
 
 urlpatterns = [
-    path('', noticeviews.index_view, name='homepage'),
-    path('ownernotices/', noticeviews.owner_notice_view, name='ownernotices'),
-    path('addnotice/', noticeviews.add_notice, name='addnotice'),
     path('login/', authenticateviews.login_view, name="loginview"),
     path('logout/', authenticateviews.logout_view, name="logoutview"),
     path('admin/', admin.site.urls),
