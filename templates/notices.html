@@ -1,99 +1,58 @@
 {% extends "base.html" %}
+{%load static %}
 {% block content %}
-<div class="hero-image">
-    <div class="hero-text">
-      <h1>Modern Village</h1>
-      <p>We know it always takes a village</p>
+<br/>
+<br/>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#noticeModal">
+    Add Notice
+</button>
+<div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="noticeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="noticeModalLabel">Add Notice</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="" method="POST" style="color: orangered;">
+        <div class="modal-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <!-- <button type="submit" style="color: orangered;">Submit</button> -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+      </div>
     </div>
   </div>
-  <br/>
-<h5>Village Notices</h5>
-<div>
+<br/>
+<h2>All {{types}} Village Notices</h2>
+<br/>
     {% for notice in data %}
-        <p>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
             {% if notice.is_urgent %}
-                <h4><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h4>
+            <h5 class="card-title" style="color: red;"><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h5>
             {% else %}
-               <h4><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h4>
+            <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
             {% endif %}
-        </p>
-        <p>
-            {{notice.creator}}
-        </p>
-        <p>
-            {{notice.title}}
-        </p>
-        <p>
-            {{notice.body}}
-        </p>
-        {% if notice.price != Null and notice.price != 0.00 %}
-        <p>
-            ${{notice.price|floatformat:2}}
-        </p>
-        {% endif %}
-        <p>
-         {{notice.post_date}}
-        </p>
-        <hr style='border: 1px dashed black;'/>
+            <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{notice.creator}}</h6>
+            <p class="card-text">{{notice.body}}</p>
+            {% if notice.price != Null and notice.price != 0.00 %}
+            <p class="card-text"> ${{notice.price|floatformat:2}}</p>
+            {% endif %}
+            <p class="card-text">{{notice.post_date}}</p>
+            {% if request.user.is_authenticated and request.user == notice.creator %}
+            <a href="/notice/{{notice.id}}/edit/" class="card-link">Edit</a>
+            <a href="/notice/{{notice.id}}/delete/" class="card-link">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+    <br/>
     {% endfor %}
-</div>
 {% endblock %}
-
-<!-- </div>
-<div>
-    {% for notice in newdata %}
-        <p>
-            {% if notice.is_urgent %}
-                <h4 style="color: red;">Urgent-{{notice.type_of}}</h4>
-            {% else %}
-               <h4>{{notice.type_of}}</h4>
-            {% endif %}
-        </p>
-        <p>
-            {{notice.creator}}
-        </p>
-        <p>
-            {{notice.title}}
-        </p>
-        <p>
-            {{notice.body}}
-        </p>
-        {% if notice.price != 0.00 or notice.price != Null %}
-        <p>
-            ${{notice.price|floatformat:2}}
-        </p>
-        {% endif %}
-        <p>
-         {{notice.post_date}}
-        </p>
-        <hr style='border: 1px dashed black;'/>
-    {% endfor %}
-</div>
-<div>
-    {% for notice in olddata %}
-        <p>
-            {% if notice.is_urgent %}
-                <h4 style="color: red;">Urgent-{{notice.type_of}}</h4>
-            {% else %}
-               <h4>{{notice.type_of}}</h4>
-            {% endif %}
-        </p>
-        <p>
-            {{notice.creator}}
-        </p>
-        <p>
-            {{notice.title}}
-        </p>
-        <p>
-            {{notice.body}}
-        </p>
-        {% if notice.price != 0.00 or notice.price != Null %}
-        <p>
-            ${{notice.price|floatformat:2}}
-        </p>
-        {% endif %}
-        <p>
-         {{notice.post_date}}
-        </p>
-        <hr style='border: 1px dashed black;'/>
-    {% endfor %} -->

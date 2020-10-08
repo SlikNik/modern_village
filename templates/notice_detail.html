@@ -1,27 +1,25 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-<p>
-    {% if notice.is_urgent %}
-        <h4 style="color: red;">Urgent-{{notice.type_of}}</h4>
-    {% else %}
-       <h4>{{notice.type_of}}</h4>
-    {% endif %}
-</p>
-<p>
-    {{notice.creator}}
-</p>
-<p>
-    {{notice.title}}
-</p>
-<p>
-    {{notice.body}}
-</p>
-<p>
-    ${{notice.price|floatformat:2}}
-</p>
-<p>
- {{notice.post_date}}
-</p>
-<button><a href="/notice/{{notice.id}}/edit/">Edit</a></button>
-<button><a href="/notice/{{notice.id}}/delete/">Delete</a></button>
+<br/>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        {% if notice.is_urgent %}
+        <h5 class="card-title" style="color: red;"><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h5>
+        {% else %}
+        <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
+        {% endif %}
+        <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{notice.creator}}</h6>
+        <p class="card-text">{{notice.body}}</p>
+        {% if notice.price != Null and notice.price != 0.00 %}
+        <p class="card-text"> ${{notice.price|floatformat:2}}</p>
+        {% endif %}
+        <p class="card-text">{{notice.post_date}}</p>
+        {% if request.user.is_authenticated and request.user == notice.creator %}
+        <a href="/notice/{{notice.id}}/edit/" class="card-link">Edit</a>
+        <a href="/notice/{{notice.id}}/delete/" class="card-link">Delete</a>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

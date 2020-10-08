@@ -1,42 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.base import TemplateView
 from django.contrib.auth.decorators import login_required
 from notices.models import Notice
 from notices.forms import AddNoticeForm
 
-def all_notices(request):
-    return render(request, 'notices.html', {'data': Notice.objects.all().order_by('-post_date')})
-
-def urgent_notices(request):
-    return render(request, 'notices.html', {'data': Notice.objects.filter(is_urgent=True)})
-
-def event_notices(request):
-    return render(request, 'notices.html', {'data': Notice.objects.filter(type_of='EVENT')})
-
-def news_notices(request):
-    return render(request, 'notices.html', {'data': Notice.objects.filter(type_of='NEWS')})
-
-def traffic_notices(request):
-    return render(request, 'notices.html', {'data': Notice.objects.filter(type_of='TRAFFIC')})
-
-def alert_notices(request):
-    return render(request, 'notices.html', {'data': Notice.objects.filter(type_of='ALERT')})
-
-def other_notices(request):
-    return render(request, 'notices.html', {'data': Notice.objects.filter(type_of='OTHER')})
-
-def notice_detail(request, id):
-    current_notice = Notice.objects.filter(id=id).first()
-    return render(request, 'notice_detail.html', {'notice': current_notice})
-
-@login_required
-def owner_notice_view(request):
-    return render(request, 'index.html', {"data": Notice.objects.filter(created_by= request.user)})
-
-@login_required
-def add_notice(request):
-    if request.method == "POST":
+class AllNotices(LoginRequiredMixin, TemplateView):
+    def get(self, request):
+        return render(request, 'notices.html', {'form': AddNoticeForm(),'data': Notice.objects.all().order_by('-post_date')})
+    
+    def post(self, request):
         form = AddNoticeForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
@@ -49,8 +24,152 @@ def add_notice(request):
                 creator=request.user
             )
             return HttpResponseRedirect(reverse('allnotices'))
-    form = AddNoticeForm()
-    return render(request, 'generic_form.html', {'form': form})
+        form = AddNoticeForm()
+        return render(request, 'notices.html', {'form': form, 'data': Notice.objects.all().order_by('-post_date')})
+
+class UrgentNotices(LoginRequiredMixin, TemplateView):
+    def get(self, request):
+        return render(request, 'notices.html', {'form': AddNoticeForm(),'data': Notice.objects.filter(is_urgent=True).order_by('-post_date'), 'types':'Urgent'})
+    
+    def post(self, request):
+        form = AddNoticeForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            new_notice = Notice.objects.create(
+                type_of=data.get('type_of'),
+                title=data.get('title'),
+                body=data.get('body'),
+                price=data.get('price'),
+                is_urgent = data.get('is_urgent'),
+                creator=request.user
+            )
+            return HttpResponseRedirect(reverse('allnotices'))
+        form = AddNoticeForm()
+        return render(request, 'notices.html', {'form': form, 'data': Notice.objects.filter(is_urgent=True).order_by('-post_date'), 'types':'Urgent'})
+
+class EventNotices(LoginRequiredMixin, TemplateView):
+    def get(self, request):
+        return render(request, 'notices.html', {'form': AddNoticeForm(),'data': Notice.objects.filter(type_of='EVENT').order_by('-post_date'), 'types':'Event'})
+    
+    def post(self, request):
+        form = AddNoticeForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            new_notice = Notice.objects.create(
+                type_of=data.get('type_of'),
+                title=data.get('title'),
+                body=data.get('body'),
+                price=data.get('price'),
+                is_urgent = data.get('is_urgent'),
+                creator=request.user
+            )
+            return HttpResponseRedirect(reverse('eventnotices'))
+        form = AddNoticeForm()
+        return render(request, 'notices.html', {'form': form, 'data': Notice.objects.filter(type_of='EVENT').order_by('-post_date'), 'types':'Event'})
+
+class AlertNotices(LoginRequiredMixin, TemplateView):
+    def get(self, request):
+        return render(request, 'notices.html', {'form': AddNoticeForm(),'data': Notice.objects.filter(type_of='ALERT').order_by('-post_date'), 'types':'Alert'})
+    
+    def post(self, request):
+        form = AddNoticeForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            new_notice = Notice.objects.create(
+                type_of=data.get('type_of'),
+                title=data.get('title'),
+                body=data.get('body'),
+                price=data.get('price'),
+                is_urgent = data.get('is_urgent'),
+                creator=request.user
+            )
+            return HttpResponseRedirect(reverse('alertnotices'))
+        form = AddNoticeForm()
+        return render(request, 'notices.html', {'form': form, 'data': Notice.objects.filter(type_of='ALERT').order_by('-post_date'), 'types':'Alert'})
+class TrafficNotices(LoginRequiredMixin, TemplateView):
+    def get(self, request):
+        return render(request, 'notices.html', {'form': AddNoticeForm(),'data': Notice.objects.filter(type_of='TRAFFIC').order_by('-post_date'), 'types':'Traffic'})
+    
+    def post(self, request):
+        form = AddNoticeForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            new_notice = Notice.objects.create(
+                type_of=data.get('type_of'),
+                title=data.get('title'),
+                body=data.get('body'),
+                price=data.get('price'),
+                is_urgent = data.get('is_urgent'),
+                creator=request.user
+            )
+            return HttpResponseRedirect(reverse('trafficnotices'))
+        form = AddNoticeForm()
+        return render(request, 'notices.html', {'form': form, 'data': Notice.objects.filter(type_of='TRAFFIC').order_by('-post_date'), 'types':'Traffic'})
+class NewsNotices(LoginRequiredMixin, TemplateView):
+    def get(self, request):
+        return render(request, 'notices.html', {'form': AddNoticeForm(),'data': Notice.objects.filter(type_of='NEWS').order_by('-post_date'), 'types':'News'})
+    
+    def post(self, request):
+        form = AddNoticeForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            new_notice = Notice.objects.create(
+                type_of=data.get('type_of'),
+                title=data.get('title'),
+                body=data.get('body'),
+                price=data.get('price'),
+                is_urgent = data.get('is_urgent'),
+                creator=request.user
+            )
+            return HttpResponseRedirect(reverse('newsnotices'))
+        form = AddNoticeForm()
+        return render(request, 'notices.html', {'form': form, 'data': Notice.objects.filter(type_of='NEWS').order_by('-post_date'), 'types':'News'})
+class OtherNotices(LoginRequiredMixin, TemplateView):
+    def get(self, request):
+        return render(request, 'notices.html', {'form': AddNoticeForm(),'data': Notice.objects.filter(type_of='OTHER').order_by('-post_date'), 'types':'Other'})
+    
+    def post(self, request):
+        form = AddNoticeForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            new_notice = Notice.objects.create(
+                type_of=data.get('type_of'),
+                title=data.get('title'),
+                body=data.get('body'),
+                price=data.get('price'),
+                is_urgent = data.get('is_urgent'),
+                creator=request.user
+            )
+            return HttpResponseRedirect(reverse('othernotices'))
+        form = AddNoticeForm()
+        return render(request, 'notices.html', {'form': form, 'data': Notice.objects.filter(type_of='OTHER').order_by('-post_date'), 'types':'Other'})
+
+
+def notice_detail(request, id):
+    current_notice = Notice.objects.filter(id=id).first()
+    return render(request, 'notice_detail.html', {'notice': current_notice})
+
+@login_required
+def owner_notice_view(request):
+    return render(request, 'index.html', {"data": Notice.objects.filter(created_by= request.user)})
+
+# @login_required
+# def add_notice(request):
+#     if request.method == "POST":
+#         form = AddNoticeForm(request.POST)
+#         if form.is_valid():
+#             data = form.cleaned_data
+#             new_notice = Notice.objects.create(
+#                 type_of=data.get('type_of'),
+#                 title=data.get('title'),
+#                 body=data.get('body'),
+#                 price=data.get('price'),
+#                 is_urgent = data.get('is_urgent'),
+#                 creator=request.user
+#             )
+#             return HttpResponseRedirect(reverse('allnotices'))
+#     form = AddNoticeForm()
+#     return render(request, 'generic_form.html', {'form': form})
 
 @login_required
 def notice_edit(request, id):
