@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Modern Village</h1>
-<p>We know it always takes a village!</p>
+<div class="hero-image">
+    <div class="hero-text">
+      <h1>Modern Village</h1>
+      <p>We know it always takes a village</p>
+    </div>
+  </div>
 <br/>
 <h2>Village Notices</h2>
 <div>
@@ -25,6 +29,10 @@
         <p>
          {{notice.post_date}}
         </p>
+<<<<<<< HEAD
+=======
+        <a href="/notice/{{notice.id}}/edit/" class="btn btn-sml btn-primary">Edit Post</a>
+>>>>>>> 7a27b4430c228b4993e4436be51cc710fb80ff1d
         <hr style='border: 1px dashed black;'/>
     {% endfor %}
 </div>
@@ -49,6 +57,10 @@
         <p>
          {{notice.post_date}}
         </p>
+<<<<<<< HEAD
+=======
+        <a href="/notice/{{notice.id}}/edit/" class="btn btn-sm btn-primary" role="button">Edit Post</a>
+>>>>>>> 7a27b4430c228b4993e4436be51cc710fb80ff1d
         <hr style='border: 1px dashed black;'/>
     {% endfor %}
 </div>
@@ -73,6 +85,10 @@
         <p>
          {{notice.post_date}}
         </p>
+<<<<<<< HEAD
+=======
+        <a href="/notice/{{notice.id}}/edit/" class="btn btn-sm btn-primary">Edit Post</a>
+>>>>>>> 7a27b4430c228b4993e4436be51cc710fb80ff1d
         <hr style='border: 1px dashed black;'/>
     {% endfor %}
 </div>
