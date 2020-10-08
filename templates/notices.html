@@ -26,16 +26,20 @@
         <p>
             {{notice.body}}
         </p>
+        {% if notice.price != Null and notice.price != 0.00 %}
+        <p>
+            ${{notice.price|floatformat:2}}
+        </p>
+        {% endif %}
         <p>
          {{notice.post_date}}
         </p>
-<<<<<<< HEAD
-=======
-        <a href="/notice/{{notice.id}}/edit/" class="btn btn-sml btn-primary">Edit Post</a>
->>>>>>> 7a27b4430c228b4993e4436be51cc710fb80ff1d
         <hr style='border: 1px dashed black;'/>
     {% endfor %}
 </div>
+{% endblock %}
+
+<!-- </div>
 <div>
     {% for notice in newdata %}
         <p>
@@ -54,13 +58,14 @@
         <p>
             {{notice.body}}
         </p>
+        {% if notice.price != 0.00 or notice.price != Null %}
+        <p>
+            ${{notice.price|floatformat:2}}
+        </p>
+        {% endif %}
         <p>
          {{notice.post_date}}
         </p>
-<<<<<<< HEAD
-=======
-        <a href="/notice/{{notice.id}}/edit/" class="btn btn-sm btn-primary" role="button">Edit Post</a>
->>>>>>> 7a27b4430c228b4993e4436be51cc710fb80ff1d
         <hr style='border: 1px dashed black;'/>
     {% endfor %}
 </div>
@@ -82,15 +87,13 @@
         <p>
             {{notice.body}}
         </p>
+        {% if notice.price != 0.00 or notice.price != Null %}
+        <p>
+            ${{notice.price|floatformat:2}}
+        </p>
+        {% endif %}
         <p>
          {{notice.post_date}}
         </p>
-<<<<<<< HEAD
-=======
-        <a href="/notice/{{notice.id}}/edit/" class="btn btn-sm btn-primary">Edit Post</a>
->>>>>>> 7a27b4430c228b4993e4436be51cc710fb80ff1d
         <hr style='border: 1px dashed black;'/>
-    {% endfor %}
-</div>
-{% endblock %}
-
+    {% endfor %} -->
