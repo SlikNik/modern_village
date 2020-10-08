@@ -17,7 +17,11 @@
     {{notice.body}}
 </p>
 <p>
+    ${{notice.price|floatformat:2}}
+</p>
+<p>
  {{notice.post_date}}
 </p>
 <button><a href="/notice/{{notice.id}}/edit/">Edit</a></button>
+<button><a href="/notice/{{notice.id}}/delete/">Delete</a></button>
 {% endblock %}

@@ -13,7 +13,7 @@ def login_view(request):
             check_user = authenticate(request, username=data.get('username'), password=data.get('password'))
             if check_user:
                 login(request, check_user)
-                return HttpResponseRedirect(reverse('homepage'))
+                return HttpResponseRedirect(reverse('allnotices'))
                 # return HttpResponseRedirect(request.GET.get( 'next',reverse('homepage')))
       
     form = LoginForm()

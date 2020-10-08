@@ -45,40 +45,17 @@
         <p>
             {{notice.title}}
         </p>
-        <p>
-            {{notice.body}}
-        </p>
-        <p>
-         {{notice.post_date}}
-        </p>
-        <a href="/notice/{{notice.id}}/edit/" class="btn btn-sm btn-primary" role="button">Edit Post</a>
-        <hr style='border: 1px dashed black;'/>
-    {% endfor %}
+    </div>
 </div>
-<div>
-    {% for notice in olddata %}
-        <p>
-            {% if notice.is_urgent %}
-                <h4 style="color: red;">Urgent-{{notice.type_of}}</h4>
-            {% else %}
-               <h4>{{notice.type_of}}</h4>
-            {% endif %}
+{% else %}
+<div class="card mb-3" style="color: orangered; margin-top: 20%;">
+    <div class="card-body">
+        <h2>Welcome to the Modern Village!<span style="color: orangered;"></span></h2>
+        <p class="lead">
+        If you already have an account, go ahead and <a href="{% url 'loginview' %}" style="color: orange;">log in</a>. If you are new to the village, get started
+        by creating <a style="color: orange;">an account</a>.
         </p>
-        <p>
-            {{notice.creator}}
-        </p>
-        <p>
-            {{notice.title}}
-        </p>
-        <p>
-            {{notice.body}}
-        </p>
-        <p>
-         {{notice.post_date}}
-        </p>
-        <a href="/notice/{{notice.id}}/edit/" class="btn btn-sm btn-primary">Edit Post</a>
-        <hr style='border: 1px dashed black;'/>
-    {% endfor %}
+    </div>
 </div>
+{% endif %}
 {% endblock %}
-

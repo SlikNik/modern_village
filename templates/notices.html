@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero-image">
+    <div class="hero-text">
+      <h1>Modern Village</h1>
+      <p>We know it always takes a village</p>
+    </div>
+  </div>
+  <br/>
+<h5>Village Notices</h5>
+<div>
+    {% for notice in data %}
+        <p>
+            {% if notice.is_urgent %}
+                <h4><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h4>
+            {% else %}
+               <h4><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h4>
+            {% endif %}
+        </p>
+        <p>
+            {{notice.creator}}
+        </p>
+        <p>
+            {{notice.title}}
+        </p>
+        <p>
+            {{notice.body}}
+        </p>
+        {% if notice.price != Null and notice.price != 0.00 %}
+        <p>
+            ${{notice.price|floatformat:2}}
+        </p>
+        {% endif %}
+        <p>
+         {{notice.post_date}}
+        </p>
+        <hr style='border: 1px dashed black;'/>
+    {% endfor %}
+</div>
+{% endblock %}
+
+<!-- </div>
+<div>
+    {% for notice in newdata %}
+        <p>
+            {% if notice.is_urgent %}
+                <h4 style="color: red;">Urgent-{{notice.type_of}}</h4>
+            {% else %}
+               <h4>{{notice.type_of}}</h4>
+            {% endif %}
+        </p>
+        <p>
+            {{notice.creator}}
+        </p>
+        <p>
+            {{notice.title}}
+        </p>
+        <p>
+            {{notice.body}}
+        </p>
+        {% if notice.price != 0.00 or notice.price != Null %}
+        <p>
+            ${{notice.price|floatformat:2}}
+        </p>
+        {% endif %}
+        <p>
+         {{notice.post_date}}
+        </p>
+        <hr style='border: 1px dashed black;'/>
+    {% endfor %}
+</div>
+<div>
+    {% for notice in olddata %}
+        <p>
+            {% if notice.is_urgent %}
+                <h4 style="color: red;">Urgent-{{notice.type_of}}</h4>
+            {% else %}
+               <h4>{{notice.type_of}}</h4>
+            {% endif %}
+        </p>
+        <p>
+            {{notice.creator}}
+        </p>
+        <p>
+            {{notice.title}}
+        </p>
+        <p>
+            {{notice.body}}
+        </p>
+        {% if notice.price != 0.00 or notice.price != Null %}
+        <p>
+            ${{notice.price|floatformat:2}}
+        </p>
+        {% endif %}
+        <p>
+         {{notice.post_date}}
+        </p>
+        <hr style='border: 1px dashed black;'/>
+    {% endfor %} -->
