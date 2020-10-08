@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from notices.models import Notice
 from notices.forms import AddNoticeForm
 
-def index_view(request):
+def all_notices(request):
     return render(request, 'notices.html', {'data': Notice.objects.all().order_by('-post_date')})
 
 def urgent_notices(request):
@@ -48,7 +48,7 @@ def add_notice(request):
                 is_urgent = data.get('is_urgent'),
                 creator=request.user
             )
-            return HttpResponseRedirect(reverse('homepage'))
+            return HttpResponseRedirect(reverse('allnotices'))
     form = AddNoticeForm()
     return render(request, 'generic_form.html', {'form': form})
 
@@ -69,3 +69,10 @@ def notice_edit(request, id):
     form = AddNoticeForm(initial={'title' : current_notice.title, 'body': current_notice.body, 
                          'price': current_notice.price, 'type_of': current_notice.type_of, 'is_urgent': current_notice.is_urgent})
     return render(request, 'generic_form.html', {'form': form})
+
+@login_required
+def notice_delete(request, id):
+    current_notice = Notice.objects.get(id=id)
+    if request.user == current_notice.creator:
+        current_notice.delete()
+    return HttpResponseRedirect(reverse('allnotices'))

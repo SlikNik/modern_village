@@ -17,11 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from authentication import views as authenticateviews
 from notices import views as noticeviews
+from modern_users import views as modernuserviews
 
 urlpatterns = [
-    path('', noticeviews.index_view, name='homepage'),
+    path('', modernuserviews.index_view, name="homepage"),
+    path('notice/<int:id>/delete/', noticeviews.notice_delete, name='editnotice'),  
     path('notice/<int:id>/edit/', noticeviews.notice_edit, name='editnotice'),  
     path('notice/<int:id>/', noticeviews.notice_detail, name='noticedetails'),
+    path('all-notices/', noticeviews.all_notices, name='allnotices'),
     path('u-notices/', noticeviews.urgent_notices, name='urgentnotices'),
     path('a-notices/', noticeviews.alert_notices, name='alertnotices'),
     path('t-notices/', noticeviews.traffic_notices, name='trafficnotices'),
