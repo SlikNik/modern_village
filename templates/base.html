@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,42 +15,56 @@
       integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static '/css/main.css' %}"
+    />
     <title>Modern Village</title>
   </head>
 
   <body>
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/notices/">Notices</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/posts/">Chat</a>
-      </li>
-      {% if request.user.is_authenticated %}
-      <li class="nav-item">
-        <a class="nav-link" href="/addpost/">Add Post</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/addnotice/">Add Notice</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/profile/">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/logout/">Logout</a>
-      </li>
-      {% else %}
-      <li class="nav-item">
-        <a class="nav-link" href="/login/">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/signup/">Sign Up</a>
-      </li>
-      {% endif%}
-    </ul>
+    <div class="heading">
+      <div class="hero-image">
+        <!-- <img src="{% static 'images/neighbor-party.jpg' %}" /> -->
+        <div class="hero-text">
+          <h1>Modern Village</h1>
+          <p>We know it always takes a village</p>
+        </div>
+      </div>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/notices/">Notices</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts/">Chat</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="/addpost/">Add Post</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/addnotice/">Add Notice</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile/">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout/">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/login/">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signup/">Sign Up</a>
+        </li>
+        {% endif%}
+      </ul>
+    </div>
 
     <div class="container">{% block content %} {% endblock %}</div>
 

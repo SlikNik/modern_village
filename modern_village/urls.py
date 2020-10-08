@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from authentication import views as authenticateviews
 from notices import views as noticeviews
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', noticeviews.index_view, name='homepage'),
@@ -28,4 +30,4 @@ urlpatterns = [
     path('login/', authenticateviews.login_view, name="loginview"),
     path('logout/', authenticateviews.logout_view, name="logoutview"),
     path('admin/', admin.site.urls),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
