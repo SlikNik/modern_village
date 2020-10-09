@@ -19,6 +19,30 @@
         by creating <a href="{% url 'signupview' %}" style="color: orange;">an account</a>.
         </p>
     </div>
-</div>
-{% endif %}
+
+  </div>
+  <!-- the DIV that will contain the widget -->
+  {% endif %}
+  <div class="weatherWidget" >Local Weather</div>
 {% endblock %}
+
+<script>
+  window.weatherWidgetConfig =  window.weatherWidgetConfig || [];
+  window.weatherWidgetConfig.push({
+      selector:".weatherWidget",
+      apiKey:"PUBLIC_WIDGET_KEY", //lots of usage? Sign up for your personal key
+      location:"London, UK", //enter an addres
+      unitGroup:"metric", //"us" or "metric"
+      forecastDays:5, //how many days forecast to show
+      title:"London,UK", //optional title to show in the 
+      showTitle:true, 
+      showConditions:true
+  });
+ 
+  (function() {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://www.visualcrossing.com/widgets/forecast-simple/weather-forecast-widget-simple.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
