@@ -41,3 +41,7 @@ class PostReplyView(LoginRequiredMixin, TemplateView):
             return HttpResponseRedirect(reverse('chat'))
         else:
             return HttpResponseRedirect(reverse('chat'))
+
+class PostCommentView(LoginRequiredMixin, TemplateView):
+    def get(self, request, post_id):
+        return render(request, 'commentsview.html', {'data': Post.objects.get(id=post_id)})

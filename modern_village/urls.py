@@ -36,12 +36,14 @@ urlpatterns = [
     path('e-notices/', noticeviews.EventNotices.as_view(), name='eventnotices'),
     path('n-notices/', noticeviews.NewsNotices.as_view(), name='newsnotices'),
     path('o-notices/', noticeviews.OtherNotices.as_view(), name='othernotices'),
-    path('posts/<int:post_id>/', postviews.PostReplyView.as_view()),
+    path('comments/<int:post_id>/', postviews.PostCommentView.as_view(), name='comments'),
+    path('posts/<int:post_id>/', postviews.PostReplyView.as_view(), name='postreply'),
     path('posts/', postviews.PostView.as_view(), name='chat'),
-    # path('ownernotices/', noticeviews.owner_notice_view, name='ownernotices'),
-    # path('addnotice/', noticeviews.add_notice, name='addnotice'),
     path('profile/<str:username>/delete/', modernusersviews.profile_delete, name='deleteprofile'),
     path('profile/<str:username>/edit/', modernusersviews.profile_edit, name='editprofile'),
     path('profile/<str:username>/', modernusersviews.profile_view, name='profileview'),
     path('signup/', modernusersviews.sign_up_view, name="signupview"),
-
+    path('login/', authenticateviews.login_view, name="loginview"),
+    path('logout/', authenticateviews.logout_view, name="logoutview"),
+    path('admin/', admin.site.urls),
+]

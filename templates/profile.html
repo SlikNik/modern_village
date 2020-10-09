@@ -23,6 +23,13 @@
         {% endif %}
     </div>
 </div>
+<br/>
+<div style="float: left;">
+{% if request.user.is_authenticated and request.user == current_user %}
+<h4> Your Notices</h4>
+{% else %}
+<h4>{{current_user.username}} Notices</h4>
+{% endif %}
 {% for notice in notices %}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
@@ -46,4 +53,35 @@
     </div>
     <br/>
 {% endfor %}
+</div>
+{% if request.user.is_authenticated and request.user == current_user %}
+<h4> Your Post</h4>
+{% else %}
+<h4>{{current_user.username}} Post</h4>
+{% endif %}
+<div style="float: right;">
+    {% for post in posts %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-subtitle mb-2 text-muted">{{post.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{post.creator}}</h6>
+            <p class="card-text">{{post.body}}</p>
+            <p class="card-text">{{post.post_date}}</p>
+            {% if request.user.is_authenticated and request.user == post.creator %}
+            <a href="/post/{{post.id}}/edit/" class="card-link">Edit</a>
+            <a href="/post/{{post.id}}/delete/" class="card-link">Delete</a>
+            {% endif %}
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary">
+            <a href="/posts/{{post.id}}/" style="color: white;">Reply</a>
+          </button>
+          <button type="button" class="btn btn-primary">
+            <a href="/comments/{{post.id}}/" style="color: white;">Comments</a>
+          </button>
+          </div>  
+    </div>
+    <br/>
+    {% endfor %}
+    </div>
 {% endblock %}
