@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% load mptt_tags %} {% block content %}
+<ul>
+  {% recursetree data %}
+  <li>
+    <h3>{{ node.title }}</h3>
+    <p>{{ node.body }}</p>
+    <p>- {{ node.creator}}</p>
+    <p>Posted {{ node.post_date}}</p>
+    {% if node.creator == request.user%} <a>Edit</a> | <a>Delete</a>
+    {% endif %}
+    <a href="/posts/{{node.id}}">Reply</a>
+    {% if not node.is_leaf_node %}
+    <ul class="children">
+      {{ children }}
+    </ul>
+    {% endif %}
+  </li>
+  {% endrecursetree %}
+</ul>
+<form action="" method="POST" style="color: orangered">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit" style="color: orangered">Submit</button>
+</form>
+{% endblock %}

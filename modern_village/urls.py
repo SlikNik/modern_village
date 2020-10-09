@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from authentication import views as authenticateviews
-from notices import views as noticeviews
+from post import views as postviews
+#from notices import views as noticeviews
 
 urlpatterns = [
-    path('', noticeviews.index_view, name='homepage'),
-    path('ownernotices/', noticeviews.owner_notice_view, name='ownernotices'),
-    path('addnotice/', noticeviews.add_notice, name='addnotice'),
+    #path('', noticeviews.index_view, name='homepage'),
+    #path('ownernotices/', noticeviews.owner_notice_view, name='ownernotices'),
+    #path('addnotice/', noticeviews.add_notice, name='addnotice'),
+    path('posts/<int:post_id>/', postviews.PostReplyView.as_view()),
+    path('posts/', postviews.PostView.as_view(), name='chat'),
     path('login/', authenticateviews.login_view, name="loginview"),
     path('logout/', authenticateviews.logout_view, name="logoutview"),
     path('admin/', admin.site.urls),

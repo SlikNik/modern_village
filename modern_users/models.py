@@ -4,17 +4,19 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
+
 class ModernUsers(AbstractUser):
     age = models.IntegerField()
     birthday = models.DateField()
     address = models.CharField(max_length=120)
     city = models.CharField(max_length=80)
     zipcode = models.CharField(max_length=10)
-    phone = models.BigIntegerField()
-    facebook = models.URLField()
-    instagram = models.URLField()
-    twitter = models.URLField()
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'email', 'address', 'city', 'zipcode', 'age', 'birthday']
+    phone = models.BigIntegerField(blank=True, null=True)
+    facebook = models.URLField(blank=True, null=True)
+    instagram = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'email',
+                       'address', 'city', 'zipcode', 'age', 'birthday']
 
     def __str__(self):
         return self.username
