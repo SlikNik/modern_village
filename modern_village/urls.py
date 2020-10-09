@@ -17,18 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from authentication import views as authenticateviews
 from notices import views as noticeviews
-<<<<<<< HEAD
-from django.conf import settings
-from django.conf.urls.static import static
-from modern_users import views as modernuserviews
-=======
 from post import views as postviews
 from modern_users import views as modernusersviews
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 handler404 = modernusersviews.handler404
 handler500 = modernusersviews.handler500
->>>>>>> 5f2fe9a99f803c351d15c0ff53f196b17c7df453
 
 urlpatterns = [
     path('', modernusersviews.index_view, name="homepage"),
