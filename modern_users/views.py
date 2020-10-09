@@ -41,7 +41,7 @@ def profile_edit(request, username):
                          'birthday': current_user.birthday, 'age': current_user.age, 'address': current_user.address, 
                          'city': current_user.city, 'zipcode': current_user.zipcode, 'facebook': current_user.facebook,
                          'twitter': current_user.twitter, 'instagram': current_user.instagram})
-    return render(request, 'generic_form.html', {'form': form, 'Type': 'Editing Notice!'})
+    return render(request, 'generic_form.html', {'form': form, 'Type': 'Updating Profile!'})
 
 @login_required
 def profile_delete(request, username):
