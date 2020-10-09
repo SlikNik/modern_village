@@ -18,40 +18,40 @@
   </head>
 
   <body>
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" style="color: orangered;">
         <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/" style="color: orangered;">Home</a>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: orangered;">
               Notices
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/all-notices/">All</a>
-              <a class="dropdown-item" href="/u-notices/">Urgent</a>
-              <a class="dropdown-item" href="/a-notices/">Alert</a>
-              <a class="dropdown-item" href="/n-notices/">News</a>
-              <a class="dropdown-item" href="/t-notices/">Traffic</a>
-              <a class="dropdown-item" href="/e-notices/">Event</a>
-              <a class="dropdown-item" href="/o-notices/">Other</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="color: orangered;">
+              <a class="dropdown-item" href="/all-notices/" style="color: orangered;">All</a>
+              <a class="dropdown-item" href="/u-notices/" style="color: orangered;">Urgent</a>
+              <a class="dropdown-item" href="/a-notices/" style="color: orangered;">Alert</a>
+              <a class="dropdown-item" href="/n-notices/" style="color: orangered;">News</a>
+              <a class="dropdown-item" href="/t-notices/" style="color: orangered;">Traffic</a>
+              <a class="dropdown-item" href="/e-notices/" style="color: orangered;">Event</a>
+              <a class="dropdown-item" href="/o-notices/" style="color: orangered;">Other</a>
             </div>
           </li>
         <li class="nav-item">
-            <a class="nav-link" href="/posts/">Chat</a>
+            <a class="nav-link" href="/posts/" style="color: orangered;">Chat</a>
         </li>
         {% if request.user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="/profile/">Profile</a>
+                <a class="nav-link" href="/profile/{{request.user.username}}/" style="color: orangered;">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/logout/">Logout</a>
+                <a class="nav-link" href="/logout/" style="color: orangered;">Logout</a>
             </li>
         {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="/login/">Login</a>
+                <a class="nav-link" href="/login/" style="color: orangered;">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/signup/">Sign Up</a>
+                <a class="nav-link" href="/signup/" style="color: orangered;">Sign Up</a>
             </li>
         {% endif%}
     </ul>

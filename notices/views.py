@@ -149,9 +149,9 @@ def notice_detail(request, id):
     current_notice = Notice.objects.filter(id=id).first()
     return render(request, 'notice_detail.html', {'notice': current_notice})
 
-@login_required
-def owner_notice_view(request):
-    return render(request, 'index.html', {"data": Notice.objects.filter(created_by= request.user)})
+# @login_required
+# def owner_notice_view(request):
+#     return render(request, 'index.html', {"data": Notice.objects.filter(created_by= request.user)})
 
 # @login_required
 # def add_notice(request):
@@ -187,7 +187,7 @@ def notice_edit(request, id):
         return HttpResponseRedirect(reverse('noticedetails', args=[current_notice.id]))
     form = AddNoticeForm(initial={'title' : current_notice.title, 'body': current_notice.body, 
                          'price': current_notice.price, 'type_of': current_notice.type_of, 'is_urgent': current_notice.is_urgent})
-    return render(request, 'generic_form.html', {'form': form})
+    return render(request, 'generic_form.html', {'form': form, 'Type': 'Editing Notice!'})
 
 @login_required
 def notice_delete(request, id):
