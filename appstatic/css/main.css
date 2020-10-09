@@ -1,19 +1,40 @@
+:root {
+  --main-bg-color: #fff5d7;
+  --first-accent: #4cb4c7;
+  --second-accent: #7abecc;
+  --text: #333300;
+  --third-accent: #7CD1C0;
+}
+/*ebeff5
+4cb4c7
+7abecc
+7CD1CO */
+
+
+body {
+  background-color: var(--main-bg-color);
+}
 .heading {
   position: relative;
 }
-ul .nav {
+.nav {
   position: absolute;
   margin-top: 0;
+  border-bottom: 0;
+  box-shadow: none;
+  outline: none;
 }
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/static/images/neighbor-party.jpg");
-  height: 30vh;
-  background-position: center;
+  height: 40vh;
+  /* background-position: center; */
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 .hero-text {
@@ -23,5 +44,8 @@ ul .nav {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+}
+.nav-link {
+  color: brown;
 }
 /* changing static file */
