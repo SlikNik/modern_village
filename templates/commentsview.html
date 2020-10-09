@@ -1,0 +1,30 @@
+{% extends "base.html" %} 
+{% load mptt_tags %} 
+{% block content %}
+<br/>
+<h1>Comments For:</h1>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-subtitle mb-2 text-muted">{{data.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{data.creator}}</h6>
+    <p class="card-text">{{data.body}}</p>
+    <p class="card-text">{{data.post_date}}</p>
+  </div>
+</div>
+<br/>
+<!-- {% recursetree data %}
+<li>
+  {{ node.name }}
+    {% if not node.is_leaf_node %}
+        <div class="children card" style="width: 18rem;">
+          <div class="card-body">
+            {{children}}
+          </div>
+        </div>
+    {% endif %}
+</li>
+{% endrecursetree %} -->
+{% endblock %}
+
+
+

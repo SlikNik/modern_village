@@ -1,0 +1,57 @@
+{% extends "base.html" %} 
+{% load mptt_tags %} 
+{% block content %}
+<br/>
+<br/>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#postModal">
+    Add Post
+</button>
+<div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="postModalLabel">Add Post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="" method="POST" style="color: orangered;">
+        <div class="modal-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<br/>
+<br/>
+<h3>Chat</h3>
+  {% recursetree data %}
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-subtitle mb-2 text-muted">{{node.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{node.creator}}</h6>
+        <p class="card-text">{{node.body}}</p>
+        <p class="card-text">{{node.post_date}}</p>
+        {% if request.user.is_authenticated and request.user == node.creator %}
+        <a href="/post/{{node.id}}/edit/" class="card-link">Edit</a>
+        <a href="/post/{{node.id}}/delete/" class="card-link">Delete</a>
+        {% endif %}
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-primary">
+        <a href="/posts/{{node.id}}/" style="color: white;">Reply</a>
+      </button>
+      <button type="button" class="btn btn-primary">
+        <a href="/comments/{{node.id}}/" style="color: white;">Comments</a>
+      </button>
+      </div>  
+</div>
+<br/>
+  {% endrecursetree %}
+{% endblock %}

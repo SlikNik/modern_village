@@ -17,24 +17,38 @@ from django.contrib import admin
 from django.urls import path
 from authentication import views as authenticateviews
 from notices import views as noticeviews
+<<<<<<< HEAD
 from django.conf import settings
 from django.conf.urls.static import static
 from modern_users import views as modernuserviews
+=======
+from post import views as postviews
+from modern_users import views as modernusersviews
+
+
+handler404 = modernusersviews.handler404
+handler500 = modernusersviews.handler500
+>>>>>>> 5f2fe9a99f803c351d15c0ff53f196b17c7df453
 
 urlpatterns = [
-    path('', modernuserviews.index_view, name="homepage"),
+    path('', modernusersviews.index_view, name="homepage"),
     path('notice/<int:id>/delete/', noticeviews.notice_delete, name='editnotice'),  
     path('notice/<int:id>/edit/', noticeviews.notice_edit, name='editnotice'),  
     path('notice/<int:id>/', noticeviews.notice_detail, name='noticedetails'),
-    path('all-notices/', noticeviews.all_notices, name='allnotices'),
-    path('u-notices/', noticeviews.urgent_notices, name='urgentnotices'),
-    path('a-notices/', noticeviews.alert_notices, name='alertnotices'),
-    path('t-notices/', noticeviews.traffic_notices, name='trafficnotices'),
-    path('e-notices/', noticeviews.event_notices, name='eventnotices'),
-    path('n-notices/', noticeviews.news_notices, name='newsnotices'),
-    path('o-notices/', noticeviews.other_notices, name='othernotices'),
-    path('ownernotices/', noticeviews.owner_notice_view, name='ownernotices'),
-    path('addnotice/', noticeviews.add_notice, name='addnotice'),
+    path('all-notices/', noticeviews.AllNotices.as_view(), name='allnotices'),
+    path('u-notices/', noticeviews.UrgentNotices.as_view(), name='urgentnotices'),
+    path('a-notices/', noticeviews.AllNotices.as_view(), name='alertnotices'),
+    path('t-notices/', noticeviews.TrafficNotices.as_view(), name='trafficnotices'),
+    path('e-notices/', noticeviews.EventNotices.as_view(), name='eventnotices'),
+    path('n-notices/', noticeviews.NewsNotices.as_view(), name='newsnotices'),
+    path('o-notices/', noticeviews.OtherNotices.as_view(), name='othernotices'),
+    path('comments/<int:post_id>/', postviews.PostCommentView.as_view(), name='comments'),
+    path('posts/<int:post_id>/', postviews.PostReplyView.as_view(), name='postreply'),
+    path('posts/', postviews.PostView.as_view(), name='chat'),
+    path('profile/<str:username>/delete/', modernusersviews.profile_delete, name='deleteprofile'),
+    path('profile/<str:username>/edit/', modernusersviews.profile_edit, name='editprofile'),
+    path('profile/<str:username>/', modernusersviews.profile_view, name='profileview'),
+    path('signup/', modernusersviews.sign_up_view, name="signupview"),
     path('login/', authenticateviews.login_view, name="loginview"),
     path('logout/', authenticateviews.logout_view, name="logoutview"),
     path('admin/', admin.site.urls),

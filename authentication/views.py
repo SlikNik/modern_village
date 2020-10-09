@@ -17,7 +17,7 @@ def login_view(request):
                 # return HttpResponseRedirect(request.GET.get( 'next',reverse('homepage')))
       
     form = LoginForm()
-    return render(request, 'generic_form.html', {'form': form, 'login': 'active'})
+    return render(request, 'generic_form.html', {'form': form, 'Type': 'Login to the Village!'})
 
 def logout_view(request):
     logout(request)
