@@ -17,8 +17,31 @@ from django.contrib import admin
 from django.urls import path
 from authentication import views as authenticateviews
 from notices import views as noticeviews
+from modern_users import views as modernusersviews
+
+
+handler404 = modernusersviews.handler404
+handler500 = modernusersviews.handler500
 
 urlpatterns = [
+    path('', modernusersviews.index_view, name="homepage"),
+    path('notice/<int:id>/delete/', noticeviews.notice_delete, name='editnotice'),  
+    path('notice/<int:id>/edit/', noticeviews.notice_edit, name='editnotice'),  
+    path('notice/<int:id>/', noticeviews.notice_detail, name='noticedetails'),
+    path('all-notices/', noticeviews.AllNotices.as_view(), name='allnotices'),
+    path('u-notices/', noticeviews.UrgentNotices.as_view(), name='urgentnotices'),
+    path('a-notices/', noticeviews.AllNotices.as_view(), name='alertnotices'),
+    path('t-notices/', noticeviews.TrafficNotices.as_view(), name='trafficnotices'),
+    path('e-notices/', noticeviews.EventNotices.as_view(), name='eventnotices'),
+    path('n-notices/', noticeviews.NewsNotices.as_view(), name='newsnotices'),
+    path('o-notices/', noticeviews.OtherNotices.as_view(), name='othernotices'),
+    # path('ownernotices/', noticeviews.owner_notice_view, name='ownernotices'),
+    # path('addnotice/', noticeviews.add_notice, name='addnotice'),
+    path('profile/<str:username>/delete/', modernusersviews.profile_delete, name='deleteprofile'),
+    path('profile/<str:username>/edit/', modernusersviews.profile_edit, name='editprofile'),
+    path('profile/<str:username>/', modernusersviews.profile_view, name='profileview'),
+    path('signup/', modernusersviews.sign_up_view, name="signupview"),
+
     path('login/', authenticateviews.login_view, name="loginview"),
     path('logout/', authenticateviews.logout_view, name="logoutview"),
     path('admin/', admin.site.urls),

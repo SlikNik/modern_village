@@ -16,7 +16,7 @@ class Notice (models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
     post_date = models.DateTimeField(auto_now=True)
-    price = models.FloatField()
+    price = models.FloatField(blank=True, null=True)
     # expire_date = models.DateField()
     creator = models.ForeignKey(ModernUsers, on_delete=models.CASCADE)
     is_urgent = models.BooleanField()
