@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from authentication import views as authenticateviews
 from notices import views as noticeviews
+from post import views as postviews
 from modern_users import views as modernusersviews
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 handler404 = modernusersviews.handler404
@@ -35,8 +38,9 @@ urlpatterns = [
     path('e-notices/', noticeviews.EventNotices.as_view(), name='eventnotices'),
     path('n-notices/', noticeviews.NewsNotices.as_view(), name='newsnotices'),
     path('o-notices/', noticeviews.OtherNotices.as_view(), name='othernotices'),
-    # path('ownernotices/', noticeviews.owner_notice_view, name='ownernotices'),
-    # path('addnotice/', noticeviews.add_notice, name='addnotice'),
+    path('comments/<int:post_id>/', postviews.PostCommentView.as_view(), name='comments'),
+    path('posts/<int:post_id>/', postviews.PostReplyView.as_view(), name='postreply'),
+    path('posts/', postviews.PostView.as_view(), name='chat'),
     path('profile/<str:username>/delete/', modernusersviews.profile_delete, name='deleteprofile'),
     path('profile/<str:username>/edit/', modernusersviews.profile_edit, name='editprofile'),
     path('profile/<str:username>/', modernusersviews.profile_view, name='profileview'),
@@ -45,4 +49,4 @@ urlpatterns = [
     path('login/', authenticateviews.login_view, name="loginview"),
     path('logout/', authenticateviews.logout_view, name="logoutview"),
     path('admin/', admin.site.urls),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

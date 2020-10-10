@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+{% load static %}
+{% load mptt_tags %} 
+{% block content %}
+<br/>
+<h1>Replying To:</h1>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+      <h5 class="card-subtitle mb-2 text-muted">{{data.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{data.creator}}</h6>
+      <p class="card-text">{{data.body}}</p>
+      <p class="card-text">{{data.post_date}}</p>
+  </div>
+</div>
+<br/>
+<form action="" method="POST" style="color: orangered">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit" style="color: orangered">Submit</button>
+</form>
+{% endblock %}

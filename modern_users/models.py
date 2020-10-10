@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
+
 class ModernUsers(AbstractUser):
     age = models.IntegerField()
     birthday = models.DateField()

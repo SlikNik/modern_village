@@ -3,12 +3,12 @@
 {% block content %}
 {% if request.user.is_authenticated %}
 <div class="card mb-3" style="color: orangered; margin-top: 20%;">
-    <div class="card-body">
-        <h2>Welcome to the Modern Village!<span style="color: orangered;"></span></h2>
-        <p class="lead">
-            Hope you are loving it and found some great resources. Please follow us on facebook!
-        </p>
-    </div>
+  <div class="card-body">
+    <h2>Welcome to the Modern Village!<span style="color: orangered;"></span></h2>
+    <p class="lead">
+      Hope you are loving it and found some great resources. Please follow us on facebook!
+    </p>
+  </div>
 </div>
 {% else %}
 <div class="card mb-3" style="color: orangered; margin-top: 20%;">
@@ -19,6 +19,30 @@
         by creating <a href="{% url 'signupview' %}" style="color: orange;">an account</a>.
         </p>
     </div>
-</div>
-{% endif %}
+
+  </div>
+  <!-- the DIV that will contain the widget -->
+  {% endif %}
+  <div class="weatherWidget" >Local Weather</div>
 {% endblock %}
+
+<script>
+  window.weatherWidgetConfig =  window.weatherWidgetConfig || [];
+  window.weatherWidgetConfig.push({
+      selector:".weatherWidget",
+      apiKey:"PUBLIC_WIDGET_KEY", //lots of usage? Sign up for your personal key
+      location:"London, UK", //enter an addres
+      unitGroup:"metric", //"us" or "metric"
+      forecastDays:5, //how many days forecast to show
+      title:"London,UK", //optional title to show in the 
+      showTitle:true, 
+      showConditions:true
+  });
+ 
+  (function() {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://www.visualcrossing.com/widgets/forecast-simple/weather-forecast-widget-simple.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
