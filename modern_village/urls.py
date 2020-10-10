@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from authentication import views as authenticateviews
+from notices import views as noticeviews
 
 urlpatterns = [
     path('login/', authenticateviews.login_view, name="loginview"),
