@@ -45,6 +45,7 @@ urlpatterns = [
     path('profile/<str:username>/edit/', modernusersviews.profile_edit, name='editprofile'),
     path('profile/<str:username>/', modernusersviews.profile_view, name='profileview'),
     path('signup/', modernusersviews.sign_up_view, name="signupview"),
+
     path('login/', authenticateviews.login_view, name="loginview"),
     path('logout/', authenticateviews.logout_view, name="logoutview"),
     path('admin/', admin.site.urls),
