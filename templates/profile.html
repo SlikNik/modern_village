@@ -54,12 +54,13 @@
     <br/>
 {% endfor %}
 </div>
-{% if request.user.is_authenticated and request.user == current_user %}
-<h4> Your Post</h4>
-{% else %}
-<h4>{{current_user.username}} Post</h4>
-{% endif %}
+<br/>
 <div style="float: right;">
+    {% if request.user.is_authenticated and request.user == current_user %}
+    <h4> Your Post</h4>
+    {% else %}
+    <h4>{{current_user.username}} Post</h4>
+    {% endif %}
     {% for post in posts %}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
