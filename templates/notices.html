@@ -41,7 +41,7 @@
             <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
             {% endif %}
             <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{notice.creator}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{notice.creator}}/">{{notice.creator}}</a></h6>
             <p class="card-text">{{notice.body}}</p>
             {% if notice.price != Null and notice.price != 0.00 %}
             <p class="card-text"> ${{notice.price|floatformat:2}}</p>

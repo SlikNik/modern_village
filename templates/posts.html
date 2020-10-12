@@ -35,7 +35,7 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-subtitle mb-2 text-muted">{{node.title}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{node.creator}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{node.creator}}/">{{node.creator}}</a></h6>
     <p class="card-text">{{node.body}}</p>
     <p class="card-text">{{node.post_date}}</p>
     {% if request.user.is_authenticated and request.user == node.creator %}

@@ -40,7 +40,7 @@
             <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
             {% endif %}
             <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{notice.creator}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{notice.creator}}/">{{notice.creator}}</a></h6>
             <p class="card-text">{{notice.body}}</p>
             {% if notice.price != Null and notice.price != 0.00 %}
             <p class="card-text"> ${{notice.price|floatformat:2}}</p>
@@ -66,7 +66,7 @@
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-subtitle mb-2 text-muted">{{post.title}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{post.creator}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{post.creator}}/">{{post.creator}}</a></h6>
             <p class="card-text">{{post.body}}</p>
             <p class="card-text">{{post.post_date}}</p>
             {% if request.user.is_authenticated and request.user == post.creator %}
