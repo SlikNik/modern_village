@@ -11,7 +11,8 @@
     <a href="/posts/{{node.id}}">Reply</a>
     {% if not node.is_leaf_node %}
     <ul class="children">
-      {{ children }}
+      <button onclick="myFunction({{node.id}})">Show Replies</button>
+      <div id="{{node.id}}DIV" style="display: none">{{ children }}</div>
     </ul>
     {% endif %}
   </li>
@@ -21,4 +22,14 @@
   {% csrf_token %} {{ form.as_p }}
   <button type="submit" style="color: orangered">Submit</button>
 </form>
+<script>
+  function myFunction(id) {
+    var x = document.getElementById(id + "DIV");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
 {% endblock %}
