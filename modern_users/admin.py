@@ -12,6 +12,7 @@ class ModernUserAdmin(UserAdmin):
             'Custom Field Heading',
             {
                 'fields': (
+                    'user_pic',
                     'age',
                     'birthday',
                     'address',

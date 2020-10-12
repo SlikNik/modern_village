@@ -6,6 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class ModernUsers(AbstractUser):
+    user_pic= models.ImageField(upload_to=upload_image, default='modern_users/pics/already.png')
     age = models.IntegerField()
     birthday = models.DateField()
     address = models.CharField(max_length=120)
@@ -19,3 +20,6 @@ class ModernUsers(AbstractUser):
 
     def __str__(self):
         return self.username
+
+    def upload_image(self, filename):
+        return 'modern_users/{}/{}'.format(self.username, filename)

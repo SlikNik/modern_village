@@ -6,10 +6,12 @@ from django.views.generic.base import TemplateView
 from django.contrib.auth.decorators import login_required
 from notices.models import Notice
 from notices.forms import AddNoticeForm
+import datetime
 
 class AllNotices(LoginRequiredMixin, TemplateView):
     def get(self, request):
-        return render(request, 'notices.html', {'form': AddNoticeForm(),'data': Notice.objects.all().order_by('-post_date')})
+        items = Notice.objects.filter(post_date__lte=datetime.datetime.today(), post_date__gt=datetime.datetime.today()-datetime.timedelta(days=30)).order_by('-post_date')
+        return render(request, 'notices.html', {'form': AddNoticeForm(),'data': items})
     
     def post(self, request):
         form = AddNoticeForm(request.POST)

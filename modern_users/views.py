@@ -22,9 +22,10 @@ def profile_view(request, username):
 def profile_edit(request, username):
     current_user = ModernUsers.objects.get(username=username)
     if request.method == 'POST':
-        form = EditProfileForm(request.POST)
+        form = EditProfileForm(request.POST , request.FILES)
         if form.is_valid():
             new_user = form.cleaned_data
+            current_user.user_pic=new_user['user_pic']
             current_user.first_name=new_user['first_name']
             current_user.last_name=new_user['last_name']
             current_user.birthday=new_user['birthday']
@@ -52,10 +53,11 @@ def profile_delete(request, username):
 
 def sign_up_view(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = SignUpForm(request.POST  ,request.FILES)
         if form.is_valid():
             data = form.cleaned_data
             new_user = ModernUsers.objects.create_user(
+                user_pic=data.get('user_pic'),
                 username=data.get('username'), 
                 password=data.get('password'), 
                 email=data.get('email'),

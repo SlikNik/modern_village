@@ -4,6 +4,7 @@
 <br/>
 <div class="card" style="width: 18rem;">
     <div class="card-body">
+        <img src="{{ current_user.user_pic }}" alt="{{ current_user.username }}" />
         <h5 class="card-title" style="color: orangered;"><a href="/profile/{{current_user.username}}/" style="color: orangered;">@{{current_user.username}}</a></h5>
         <h5 class="card-subtitle mb-2 text-muted">{{current_user.first_name}} {{current_user.last_name}}</h5>
         <p class="card-text">Birthday:{{current_user.birthday}}</p>
