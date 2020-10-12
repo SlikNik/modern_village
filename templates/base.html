@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,21 +6,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
-        integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <script type="text/javascript" src="{% static '/javascript/main.js' %}"></script>
     <title>Modern Village</title>
 </head>
 
   <body>
-    <ul class="nav nav-tabs" style="color: orangered;">
+    <section id="header">
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="#navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+  
+    <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-            <a class="nav-link" href="/" style="color: orangered;">Home</a>
+            <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: orangered;">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Notices
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="color: orangered;">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/all-notices/" style="color: orangered;">All</a>
               <a class="dropdown-item" href="/u-notices/" style="color: orangered;">Urgent</a>
               <a class="dropdown-item" href="/a-notices/" style="color: orangered;">Alert</a>
@@ -31,27 +43,36 @@
             </div>
           </li>
         <li class="nav-item">
-            <a class="nav-link" href="/posts/" style="color: orangered;">Chat</a>
+            <a class="nav-link" href="/posts/">Chat</a>
         </li>
         {% if request.user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="/profile/{{request.user.username}}/" style="color: orangered;">Profile</a>
+                <a class="nav-link" href="/profile/{{request.user.username}}/">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/logout/" style="color: orangered;">Logout</a>
+                <a class="nav-link" href="/logout/">Logout</a>
             </li>
+            
         {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="/login/" style="color: orangered;">Login</a>
+                <a class="nav-link" href="/login/">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/signup/" style="color: orangered;">Sign Up</a>
+                <a class="nav-link" href="/signup/">Sign Up</a>
             </li>
         {% endif%}
     </ul>
-
+    <div class="weatherWidget" style="color: white;">Local Weather</div>
+  </section>
+  <div class="jumbotron text-center">
+    <div class="intro">
+      <img src="../images/neighborhood-logo" width="30" height="30" alt="">
+      <h1 class="title">Modern Village</h1>
+      <p class='motto'>We know sometimes it takes a village</p>
+    </div>
   </div>
-
+  
+  
   <div class="container">{% block content %} {% endblock %}</div>
 
   <!-- JS, Popper.js, and jQuery -->
