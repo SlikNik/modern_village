@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{%load static %}
+{% load static %}
 {% block content %}
 <br/>
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-        <img src="{{ current_user.user_pic }}" alt="{{ current_user.username }}" />
+        <img src="{{current_user.user_pic.url }}" alt="{{ current_user.username }}" />
         <h5 class="card-title" style="color: orangered;"><a href="/profile/{{current_user.username}}/" style="color: orangered;">@{{current_user.username}}</a></h5>
         <h5 class="card-subtitle mb-2 text-muted">{{current_user.first_name}} {{current_user.last_name}}</h5>
         <p class="card-text">Birthday:{{current_user.birthday}}</p>
@@ -41,6 +41,9 @@
             {% endif %}
             <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
             <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{notice.creator}}/">{{notice.creator}}</a></h6>
+            <!-- {% if notice.image != Null %}
+            <img src="{{notice.image.url }}" alt="{{ notice.title }}"/>
+            {% endif %} -->
             <p class="card-text">{{notice.body}}</p>
             {% if notice.price != Null and notice.price != 0.00 %}
             <p class="card-text"> ${{notice.price|floatformat:2}}</p>

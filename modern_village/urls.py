@@ -15,10 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+"""Not for production level"""
+from django.conf.urls.static import static
+from django.conf import settings
+"""Not for production level"""
 from authentication import views as authenticateviews
 from notices import views as noticeviews
 from post import views as postviews
 from modern_users import views as modernusersviews
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 handler404 = modernusersviews.handler404
@@ -43,7 +49,11 @@ urlpatterns = [
     path('profile/<str:username>/edit/', modernusersviews.profile_edit, name='editprofile'),
     path('profile/<str:username>/', modernusersviews.profile_view, name='profileview'),
     path('signup/', modernusersviews.sign_up_view, name="signupview"),
+
     path('login/', authenticateviews.login_view, name="loginview"),
     path('logout/', authenticateviews.logout_view, name="logoutview"),
     path('admin/', admin.site.urls),
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

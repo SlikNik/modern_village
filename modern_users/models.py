@@ -23,4 +23,4 @@ class ModernUsers(AbstractUser):
         return self.username
 
     def upload_image(self, filename):
-        return 'modern_users/{}/{}'.format(self.username, filename)
+        return 'static/images/{}/{}'.format(self.username, filename)

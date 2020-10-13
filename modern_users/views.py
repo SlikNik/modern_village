@@ -36,12 +36,13 @@ def profile_edit(request, username):
             current_user.facebook=new_user['facebook']
             current_user.twitter=new_user['twitter']
             current_user.instagram=new_user['instagram']
+            current_user.user_pic=new_user['user_pic']
             current_user.save()
         return HttpResponseRedirect(reverse('noticedetails', args=[current_user.id]))
     form = EditProfileForm(initial={'first_name' : current_user.first_name, 'last_name': current_user.last_name, 
                          'birthday': current_user.birthday, 'age': current_user.age, 'address': current_user.address, 
                          'city': current_user.city, 'zipcode': current_user.zipcode, 'facebook': current_user.facebook,
-                         'twitter': current_user.twitter, 'instagram': current_user.instagram})
+                         'twitter': current_user.twitter, 'instagram': current_user.instagram, 'user_pic': current_user.user_pic})
     return render(request, 'generic_form.html', {'form': form, 'Type': 'Updating Profile!'})
 
 @login_required

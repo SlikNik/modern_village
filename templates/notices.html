@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {%load static %}
 {% block content %}
+<body>
 <br/>
 <br/>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#noticeModal">
+<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#noticeModal">
     Add Notice
 </button>
 <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="noticeModalLabel" aria-hidden="true">
@@ -11,19 +12,19 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="noticeModalLabel">Add Notice</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="" method="POST" style="color: orangered;">
+        <form action="" method="POST">
         <div class="modal-body">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <!-- <button type="submit" style="color: orangered;">Submit</button> -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-save">Save changes</button>
             </div>
         </form>
       </div>
@@ -42,6 +43,9 @@
             {% endif %}
             <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
             <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{notice.creator}}/">{{notice.creator}}</a></h6>
+            <!-- {% if notice.notice_pic %} -->
+            <img src="{{notice.notice_pic.url }}" alt="{{ notice.title }}"/>
+            <!-- {% endif %} -->
             <p class="card-text">{{notice.body}}</p>
             {% if notice.price != Null and notice.price != 0.00 %}
             <p class="card-text"> ${{notice.price|floatformat:2}}</p>
@@ -55,4 +59,5 @@
     </div>
     <br/>
     {% endfor %}
+    </body>
 {% endblock %}
