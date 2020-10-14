@@ -6,7 +6,8 @@
     <p>{{ node.body }}</p>
     <p>- {{ node.creator}}</p>
     <p>Posted {{ node.post_date}}</p>
-    {% if node.creator == request.user%} <a>Edit</a> | <a>Delete</a>
+    {% if node.creator == request.user%} <a href="{{node.id}}/edit/">Edit</a> |
+    <a href="{{node.id}}/del/">Delete</a>
     {% endif %}
     <a href="/posts/{{node.id}}">Reply</a>
     {% if not node.is_leaf_node %}

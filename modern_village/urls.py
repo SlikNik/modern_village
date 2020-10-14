@@ -23,6 +23,8 @@ urlpatterns = [
     #path('', noticeviews.index_view, name='homepage'),
     #path('ownernotices/', noticeviews.owner_notice_view, name='ownernotices'),
     #path('addnotice/', noticeviews.add_notice, name='addnotice'),
+    path('posts/<int:post_id>/edit/', postviews.post_edit_view),
+    path('posts/<int:post_id>/del/', postviews.post_delete_view),
     path('posts/<int:post_id>/', postviews.PostReplyView.as_view()),
     path('posts/', postviews.PostView.as_view(), name='chat'),
     path('login/', authenticateviews.login_view, name="loginview"),
