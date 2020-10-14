@@ -45,11 +45,12 @@ urlpatterns = [
     path('comments/<int:post_id>/', postviews.PostCommentView.as_view(), name='comments'),
     path('posts/<int:post_id>/', postviews.PostReplyView.as_view(), name='postreply'),
     path('posts/', postviews.PostView.as_view(), name='chat'),
+    path('follow/<str:username>/', modernusersviews.following_view, name='follow'),
+    path('unfollow/<str:username>/', modernusersviews.unfollow_view, name='unfollow'),
     path('profile/<str:username>/delete/', modernusersviews.profile_delete, name='deleteprofile'),
     path('profile/<str:username>/edit/', modernusersviews.profile_edit, name='editprofile'),
     path('profile/<str:username>/', modernusersviews.profile_view, name='profileview'),
     path('signup/', modernusersviews.sign_up_view, name="signupview"),
-
     path('login/', authenticateviews.login_view, name="loginview"),
     path('logout/', authenticateviews.logout_view, name="logoutview"),
     path('admin/', admin.site.urls),

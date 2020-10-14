@@ -16,7 +16,25 @@ def profile_view(request, username):
     current_user = ModernUsers.objects.filter(username=username).first()
     notices = Notice.objects.filter(creator=current_user).order_by('-post_date')
     posts = Post.objects.filter(creator=current_user).order_by('-post_date')
-    return render(request, 'profile.html', {"current_user": current_user, "notices": notices, "posts": posts})
+    profile = ModernUsers.objects.get(id=current_user.id)
+    following = request.user.following.all()
+    following_list = list(following)
+    return render(request, 'profile.html', {"current_user": current_user, "notices": notices, "posts": posts, "profile": profile, "user_following": following_list})
+
+@login_required
+def following_view(request, following_id):
+    current_user = request.user.id
+    follow = ModernUsers.objects.filter(id=following_id).first()
+    current_user.following.add(follow)
+    return HttpResponseRedirect(reverse('homepage'))
+
+
+@login_required
+def unfollow_view(request, unfollow_id):
+    current_user = request.user.id
+    follow = ModernUsers.objects.filter(id=unfollow_id).first()
+    current_user.following.remove(follow)
+    return HttpResponseRedirect(reverse('homepage'))
 
 @login_required
 def profile_edit(request, username):

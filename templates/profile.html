@@ -22,6 +22,11 @@
         <a href="/profile/{{current_user.username}}/edit/" class="card-link">Edit</a>
         <a href="/profile/{{current_user.username}}/delete/" class="card-link" style="color: red;">Delete</a>
         {% endif %}
+        {% if profile in user_following %}
+        <a href="/unfollow/{{ current_user.id }}/"><button>Unfollow -</button></a>
+        {% else %}
+        <a href="/follow/{{ current_user.id }}/"><button>Follow +</button></a>
+        {% endif %}
     </div>
 </div>
 <br/>
