@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,8 +25,9 @@ SECRET_KEY = '+81hagrhhm*f2(v-^w4-nxiuoy@uxkcr$xt001n@3qlrcvky$n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -81,7 +83,7 @@ WSGI_APPLICATION = 'modern_village.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
 
@@ -127,3 +129,13 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'modern_users.ModernUsers'
 
 LOGIN_URL = '/login/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'appstatic')
+]
+
+MEDIA_URL = '/images/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')

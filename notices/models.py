@@ -15,16 +15,12 @@ class Notice (models.Model):
         default=TypeOf.NEWS)
     title = models.CharField(max_length=100)
     body = models.TextField()
-    post_date = models.DateTimeField(auto_now=True)
-    price = models.FloatField()
-    # expire_date = models.DateField()
+    post_date = models.DateTimeField(default=timezone.now)
+    notice_pic = models.ImageField(blank=True, null=True)
+    # models.DateTimeField(auto_now=True)
+    price = models.FloatField(blank=True, null=True)
     creator = models.ForeignKey(ModernUsers, on_delete=models.CASCADE)
     is_urgent = models.BooleanField()
 
     def __str__(self):
         return f'{self.type_of}-{self.title}'
-
-    # @property
-    # def expire_date(self):
-    #     if self.is_urgent:
-    #         return 

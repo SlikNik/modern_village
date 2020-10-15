@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br/>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <img src="{{current_user.user_pic.url }}" alt="{{ current_user.username }}" />
+        <h5 class="card-title" style="color: orangered;"><a href="/profile/{{current_user.username}}/" style="color: orangered;">@{{current_user.username}}</a></h5>
+        <h5 class="card-subtitle mb-2 text-muted">{{current_user.first_name}} {{current_user.last_name}}</h5>
+        <p class="card-text">Birthday:{{current_user.birthday}}</p>
+        <p class="card-text">Zipcode:{{current_user.zipcode}}</p>
+        {%if current_user.facebook != Null %}
+        <p class="card-text"> {{current_user.facebook}}</p>
+        {% endif %}
+        {%if current_user.instagram != Null %}
+        <p class="card-text"> {{current_user.instagram}}</p>
+        {% endif %}
+        {%if current_user.twitter != Null %}
+        <p class="card-text"> {{current_user.twitter}}</p>
+        {% endif %}
+        {% if request.user.is_authenticated and request.user == current_user %}
+        <a href="/profile/{{current_user.username}}/edit/" class="card-link">Edit</a>
+        <a href="/profile/{{current_user.username}}/delete/" class="card-link" style="color: red;">Delete</a>
+        {% endif %}
+    </div>
+</div>
+<br/>
+<div style="float: left;">
+{% if request.user.is_authenticated and request.user == current_user %}
+<h4> Your Notices</h4>
+{% else %}
+<h4>{{current_user.username}} Notices</h4>
+{% endif %}
+{% for notice in notices %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            {% if notice.is_urgent %}
+            <h5 class="card-title" style="color: red;"><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h5>
+            {% else %}
+            <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
+            {% endif %}
+            <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{notice.creator}}/">{{notice.creator}}</a></h6>
+            <!-- {% if notice.image != Null %}
+            <img src="{{notice.image.url }}" alt="{{ notice.title }}"/>
+            {% endif %} -->
+            <p class="card-text">{{notice.body}}</p>
+            {% if notice.price != Null and notice.price != 0.00 %}
+            <p class="card-text"> ${{notice.price|floatformat:2}}</p>
+            {% endif %}
+            <p class="card-text">{{notice.post_date}}</p>
+            {% if request.user.is_authenticated and request.user == notice.creator %}
+            <a href="/notice/{{notice.id}}/edit/" class="card-link">Edit</a>
+            <a href="/notice/{{notice.id}}/delete/" class="card-link" style="color: red;">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+    <br/>
+{% endfor %}
+</div>
+<br/>
+<div style="float: right;">
+    {% if request.user.is_authenticated and request.user == current_user %}
+    <h4> Your Post</h4>
+    {% else %}
+    <h4>{{current_user.username}} Post</h4>
+    {% endif %}
+    {% for post in posts %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-subtitle mb-2 text-muted">{{post.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{post.creator}}/">{{post.creator}}</a></h6>
+            <p class="card-text">{{post.body}}</p>
+            <p class="card-text">{{post.post_date}}</p>
+            {% if request.user.is_authenticated and request.user == post.creator %}
+            <a href="/post/{{post.id}}/edit/" class="card-link">Edit</a>
+            <a href="/post/{{post.id}}/delete/" class="card-link">Delete</a>
+            {% endif %}
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary">
+            <a href="/posts/{{post.id}}/" style="color: white;">Reply</a>
+          </button>
+          <button type="button" class="btn btn-primary">
+            <a href="/comments/{{post.id}}/" style="color: white;">Comments</a>
+          </button>
+          </div>  
+    </div>
+    <br/>
+    {% endfor %}
+    </div>
+{% endblock %}

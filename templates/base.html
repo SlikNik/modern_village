@@ -1,41 +1,59 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
-        integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
-    <title>Hierarhical Data and You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <script type="text/javascript" src="{% static '/javascript/main.js' %}"></script>
+    <title>Modern Village</title>
 </head>
 
-<body>
-    <ul class="nav nav-tabs">
+  <body>
+    <section id="header">
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="#navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+  
+    <ul class="navbar-nav mx-auto">
         <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Notices
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/all-notices/" style="color: orangered;">All</a>
+              <a class="dropdown-item" href="/u-notices/" style="color: orangered;">Urgent</a>
+              <a class="dropdown-item" href="/a-notices/" style="color: orangered;">Alert</a>
+              <a class="dropdown-item" href="/n-notices/" style="color: orangered;">News</a>
+              <a class="dropdown-item" href="/t-notices/" style="color: orangered;">Traffic</a>
+              <a class="dropdown-item" href="/e-notices/" style="color: orangered;">Event</a>
+              <a class="dropdown-item" href="/o-notices/" style="color: orangered;">Other</a>
+            </div>
+          </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/posts/">Chat</a>
+        </li>
         {% if request.user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="/addpost/">Add Post</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addnotice/">Add Notice</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/profile/">Profile</a>
+                <a class="nav-link" href="/profile/{{request.user.username}}/">Profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout/">Logout</a>
             </li>
+            
         {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="/notices/">Notices</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/posts/">Post</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/login/">Login</a>
             </li>
@@ -44,22 +62,29 @@
             </li>
         {% endif%}
     </ul>
-    
-    <div class="container">
-        {% block content %}
-        {% endblock %}
+    <div class="weatherWidget" style="color: white;">Local Weather</div>
+  </section>
+  <div class="jumbotron text-center">
+    <div class="intro">
+      <img src="../images/neighborhood-logo" width="30" height="30" alt="">
+      <h1 class="title">Modern Village</h1>
+      <p class='motto'>We know sometimes it takes a village</p>
     </div>
- 
-    <!-- JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"
-        integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
-        crossorigin="anonymous"></script>
+  </div>
+  
+  
+  <div class="container">{% block content %} {% endblock %}</div>
+
+  <!-- JS, Popper.js, and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"
+    integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

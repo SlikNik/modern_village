@@ -1,8 +1,18 @@
 {% extends "base.html" %}
+{%load static %}
 {% block content %}
-<form action="" method="POST" style="color: orangered;">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" style="color: orangered;">Submit</button>
-</form>
+<br/>
+<div class="card mb-3" style="width: 900px;">
+    <div class="card-body" style="color: orangered;">
+        <h5 class="card-title">{{Type}}</h5>
+        <form enctype="multipart/form-data" action="" method="POST" style="color: orangered; column-count: 2;">
+            {% csrf_token %}
+            {{ form.as_p }}  
+            <div class="card-body">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="{% url 'homepage' %}" >Close</a></button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

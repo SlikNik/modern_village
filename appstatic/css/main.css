@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.jumbotron {
+    background-image: url('../images/village.jpg');
+    font-family: "Shadows Into Light";
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    border-radius: 0px!important;
+}
+.jumbotron h1 {
+    margin: 30px 0;
+}
+.intro {
+    padding-top: 160px;
+}
+h1.title {
+    font-size: 75px;
+    font-weight: bold;
+    color: white;
+}
+p.motto {
+    color: white;
+}
+
+.navbar-nav a{
+    color: white;
+    margin: 0 20px;
+    margin-top: 10px;
+    border: none!important;
+    overflow: hidden;
+
+
+}
+.navbar-toggler-icon {
+    color: black;
+    border: none!important;
+    outline: none!important;
+    background-color: yellow;
+    border: 1px solid black;
+    outline: none!important;
+}
+
+.navlink:hover {
+    font-weight: 600;
+    border-bottom: 1px solid white;
+    margin-bottom: -1px;
+}
+.weatherWidget{
+    color: white;
+    position: fixed;
+    top: 400px;
+    right: 20px;
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 300px) {
+    .navbar-toggler a {
+        color: orangered!important;
+
+    }
+}
+
