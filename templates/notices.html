@@ -59,7 +59,9 @@
           {% if notice.is_urgent %}
           <h5 class="card-title" style="color: red;"><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h5>
           {% else %}
-          <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
+          <div class="notice-title">
+            <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
+          </div>
           {% endif %}
           <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{notice.creator}}</h6>
@@ -85,7 +87,6 @@
           <p class="card-text">Local groceries, best prices! Come on in!</p>
           <p class="card-text">M-Sa 7am - 7pm, Closed Sundays</p>
           <p class="card-text">1540 Main St.</p>
-          <a href="#" class="btn btn-primary">Sam's Grocery</a>
         </div>
       </div>
     
@@ -101,7 +102,6 @@
             <p class="card-text">New Fabrics weekly</p>
             <p class="card-text">M-Sa 9am - 5pm</p>
             <p class="card-text">777 1st Street</p>
-          <a href="#" class="btn btn-primary">Linda's Sewcial Lounge</a>
         </div>
       </div>
     
@@ -112,10 +112,9 @@
     <div class="card" style="width: 15rem;">
         <img src="/static/images/pet-shop.webp" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Fido'<s></s></h5>
+          <h5 class="card-title">Fido<s></s></h5>
           <p class="card-text">Daily hours: 8am to 9pm</p>
           <p class="card-text">649 2nd Ave.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
     
@@ -128,7 +127,6 @@
         <div class="card-body">
           <h5 class="card-title">Slick's Cars</h5>
           <p class="card-text">Monday through Saturday 8am</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
     </div>

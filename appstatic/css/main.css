@@ -109,10 +109,14 @@ h2.title2 {
     text-align: center;
     margin-bottom: 20px;
 }
-
-]
-
-
+h3.title3 {
+    text-align: center;
+    color: #264653;
+    margin-top: 10px;
+}
+div.notice-title {
+    color: #264653!important;
+}
 @media only screen and (max-width: 1000px) {
     nav.navbar {
         background-color: rgba(255, 254, 242, 0.8);
