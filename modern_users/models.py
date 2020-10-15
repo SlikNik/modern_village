@@ -17,7 +17,7 @@ class ModernUsers(AbstractUser):
     facebook = models.URLField(blank=True, null=True)
     instagram = models.URLField(blank=True, null=True)
     twitter = models.URLField(blank=True, null=True)
-    following = models.ManyToManyField('self', symmetrical=False)
+    followers = models.ManyToManyField('self', symmetrical=False, blank = True, related_name="following", default=0)
     REQUIRED_FIELDS = ['first_name', 'last_name', 'email', 'address', 'city', 'zipcode', 'age', 'birthday']
 
     def __str__(self):
