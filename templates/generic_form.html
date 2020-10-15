@@ -5,7 +5,7 @@
 <div class="card mb-3" style="width: 900px;">
     <div class="card-body" style="color: orangered;">
         <h5 class="card-title">{{Type}}</h5>
-        <form action="" method="POST" style="color: orangered; column-count: 2;">
+        <form enctype="multipart/form-data" action="" method="POST" style="color: orangered; column-count: 2;">
             {% csrf_token %}
             {{ form.as_p }}  
             <div class="card-body">

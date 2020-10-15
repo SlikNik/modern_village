@@ -61,19 +61,21 @@
           {% else %}
           <div class="notice-title">
             <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
-          </div>
-          {% endif %}
-          <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{notice.creator}}</h6>
-          <p class="card-text">{{notice.body}}</p>
-          {% if notice.price != Null and notice.price != 0.00 %}
-          <p class="card-text"> ${{notice.price|floatformat:2}}</p>
-          {% endif %}
-          <p class="card-text">{{notice.post_date}}</p>
-          {% if request.user.is_authenticated and request.user == notice.creator %}
-          <a href="/notice/{{notice.id}}/edit/" class="card-link">Edit</a>
-          <a href="/notice/{{notice.id}}/delete/" class="card-link">Delete</a>
-          {% endif %}
+            {% endif %}
+            <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{notice.creator}}/">{{notice.creator}}</a></h6>
+            <!-- {% if notice.notice_pic %} -->
+            <img src="{{notice.notice_pic.url }}" alt="{{ notice.title }}"/>
+            <!-- {% endif %} -->
+            <p class="card-text">{{notice.body}}</p>
+            {% if notice.price != Null and notice.price != 0.00 %}
+            <p class="card-text"> ${{notice.price|floatformat:2}}</p>
+            {% endif %}
+            <p class="card-text">{{notice.post_date}}</p>
+            {% if request.user.is_authenticated and request.user == notice.creator %}
+            <a href="/notice/{{notice.id}}/edit/" class="card-link">Edit</a>
+            <a href="/notice/{{notice.id}}/delete/" class="card-link">Delete</a>
+            {% endif %}
         </div>
       </div>
       {% endfor %}

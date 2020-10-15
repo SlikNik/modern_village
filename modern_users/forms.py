@@ -7,7 +7,7 @@ class SignUpForm(forms.ModelForm):
 
     class Meta:
         model = ModernUsers
-        fields = ('first_name', 'last_name', 'email', 'address', 'city', 'zipcode', 'age', 'birthday', 'facebook', 'instagram', 'twitter', 'username', 'password',)
+        fields = ('first_name', 'last_name', 'email', 'address', 'city', 'zipcode', 'age', 'birthday', 'facebook', 'instagram', 'twitter', 'username', 'password', 'user_pic',)
 
     def clean(self):
         cleaned_data = super(SignUpForm, self).clean()
@@ -22,4 +22,4 @@ class SignUpForm(forms.ModelForm):
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = ModernUsers
-        fields = ('first_name', 'last_name', 'address', 'city', 'zipcode', 'age', 'birthday', 'facebook', 'instagram', 'twitter',)
+        fields = ('first_name', 'last_name', 'address', 'city', 'zipcode', 'age', 'birthday', 'facebook', 'instagram', 'twitter', 'user_pic',)
