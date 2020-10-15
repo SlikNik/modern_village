@@ -1,21 +1,19 @@
-{% extends 'base.html' %}
+a{% extends 'base.html' %}
 {% load static %}
-<html>
-<body>
-  {% block content %}
+{% block content %}
   
   
 {% if request.user.is_authenticated %}
-<div class="card mb-3" style="color: orangered; margin-top: 20%;">
+<div class="card mb-3" style="color: orangered;">
   <div class="card-body">
       <h2>Welcome to the Modern Village!<span style="color: orangered;"></span></h2>
       <p class="lead">
-          Hope you are loving it and found some great resources. Please follow us on facebook!
+          Hope you are loving it and found some great resources. Please follow us on <a href="www.facebook.com">facebook!</a>
       </p>
   </div>
 </div>
 {% else %}
-<div class="card mb-3" style="color: orangered; margin-top: 20%;">
+<div class="card mb-3" style="color: orangered;">
   <div class="card-body">
       <h2>Welcome to the Modern Village!<span style="color: orangered;"></span></h2>
       <p class="lead">
@@ -29,7 +27,5 @@
   {% endif %}
   
 {% endblock %}
-</body>
-</html>
 
 
