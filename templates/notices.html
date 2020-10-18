@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {%load static %}
 {% block content %}
-<body>
 <br/>
 <br/>
 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#noticeModal">
@@ -30,10 +29,9 @@
       </div>
     </div>
   </div>
-  </section>
 <br/>
 <h2 class='title2'>All {{types}} Village Notices</h2>
-<br/>
+
 <div class="container">
   <div class="row">
     <div class="col-md-3">
@@ -53,14 +51,15 @@
   
 
     <div class="col-md-6">
-  {% for notice in data %}
-      <div class="card">
+      {% for notice in data %}
+    <div class="card">
       <div class="card-body">
           {% if notice.is_urgent %}
           <h5 class="card-title" style="color: red;"><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h5>
           {% else %}
           <div class="notice-title">
             <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
+          </div>
             {% endif %}
             <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
             <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{notice.creator}}/">{{notice.creator}}</a></h6>
@@ -78,26 +77,26 @@
             {% endif %}
         </div>
       </div>
-      {% endfor %}
+    {% endfor %}
   </div>
-  <br/>  
-    <div class="col-md-2">
-      <div class="card" style="width: 15rem;">
-        <img src="/static/images/grocery.jpg" class="card-img-top" alt="">
+
+   <div class="col-md-3">
+      <div class="card" style="width: 13rem;">
+        <img src="/static/images/grocery.jpg" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Sam's Grocery & Deli</h5>
           <p class="card-text">Local groceries, best prices! Come on in!</p>
           <p class="card-text">M-Sa 7am - 7pm, Closed Sundays</p>
           <p class="card-text">1540 Main St.</p>
-        </div>
       </div>
+    </div>
     
   
     
     
     
-      <div class="card"style="width: 15rem;">
-        <img src="/static/images/fabric-store-logo.png" class="card-img-top" alt="...">
+      <div class="card"style="width: 13rem;">
+        <img src="/static/images/fabric-store-logo.png" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">The Sewcial Lounge</h5>
           <p class="card-text">Weekly specials, and mystery bags!</p>
@@ -111,7 +110,7 @@
     
   
      
-    <div class="card" style="width: 15rem;">
+    <div class="card" style="width: 13rem;">
         <img src="/static/images/pet-shop.webp" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Fido<s></s></h5>
@@ -124,7 +123,7 @@
 
 
   
-    <div class="card" style="width: 15rem">
+  <div class="card" style="width: 13rem">
         <img src="/static/images/car-dealership.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Slick's Cars</h5>
@@ -132,9 +131,9 @@
         </div>
       </div>
     </div>
-  
+
 </div>
 </div> 
+
 {% endblock %}
-</body>
 
