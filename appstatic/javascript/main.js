@@ -2,10 +2,10 @@ window.weatherWidgetConfig = window.weatherWidgetConfig || [];
 window.weatherWidgetConfig.push({
   selector: ".weatherWidget",
   apiKey: "K8E8GMWKCRT7R9T2MUI056VN9", //lots of usage? Sign up for your personal key
-  location: "Halsey, OR", //enter an addres
+  location: "Indianapolis, IN", //enter an addres
   unitGroup: "us", //"us" or "metric"
   forecastDays: 7, //how many days forecast to show
-  title: "Halsey, OR", //optional title to show in the
+  title: "Indianapolis, IN", //optional title to show in the
   showTitle: true,
   showConditions: true,
 });

@@ -77,7 +77,6 @@ def sign_up_view(request):
         form = SignUpForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
-            breakpoint()
             new_user = ModernUsers.objects.create_user(
                 user_pic=data.get('user_pic'),
                 username=data.get('username'),
