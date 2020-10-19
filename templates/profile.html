@@ -4,7 +4,11 @@
 <br/>
 <div class="card col-md-12">
     <div class="card-body">
+        {% if current_user.user_pic %}
         <img class="rounded" src="{{current_user.user_pic.url }}" alt="{{ current_user.username }}" />
+        {% else %}
+        <img class="rounded" src="/static/images/daisy_default.jpeg" alt="daisy" />
+        {% endif %}
         <h5 class="card-title text-center" style="color: orangered;"><a href="/profile/{{current_user.username}}/" style="color: orangered;">@{{current_user.username}}</a></h5>
         <h5 class="card-subtitle mb-2 text-muted text-center">{{current_user.first_name}} {{current_user.last_name}}</h5>
         <p class="card-text text-center">Birthday:{{current_user.birthday}}</p>
