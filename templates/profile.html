@@ -2,13 +2,13 @@
 {% load static %}
 {% block content %}
 <br/>
-<div class="card" style="width: 18rem;">
+<div class="card col-md-12">
     <div class="card-body">
-        <img src="{{current_user.user_pic.url }}" alt="{{ current_user.username }}" />
-        <h5 class="card-title" style="color: orangered;"><a href="/profile/{{current_user.username}}/" style="color: orangered;">@{{current_user.username}}</a></h5>
-        <h5 class="card-subtitle mb-2 text-muted">{{current_user.first_name}} {{current_user.last_name}}</h5>
-        <p class="card-text">Birthday:{{current_user.birthday}}</p>
-        <p class="card-text">Zipcode:{{current_user.zipcode}}</p>
+        <img class="rounded" src="{{current_user.user_pic.url }}" alt="{{ current_user.username }}" />
+        <h5 class="card-title text-center" style="color: orangered;"><a href="/profile/{{current_user.username}}/" style="color: orangered;">@{{current_user.username}}</a></h5>
+        <h5 class="card-subtitle mb-2 text-muted text-center">{{current_user.first_name}} {{current_user.last_name}}</h5>
+        <p class="card-text text-center">Birthday:{{current_user.birthday}}</p>
+        <p class="card-text text-center">Zipcode:{{current_user.zipcode}}</p>
         {%if current_user.facebook != Null %}
         <p class="card-text"> {{current_user.facebook}}</p>
         {% endif %}
@@ -19,11 +19,11 @@
         <p class="card-text"> {{current_user.twitter}}</p>
         {% endif %}
         {% if request.user.is_authenticated and request.user == current_user %}
-        <a href="/profile/{{current_user.username}}/edit/" class="card-link">Edit</a>
-        <a href="/profile/{{current_user.username}}/delete/" class="card-link" style="color: red;">Delete</a>
+        <a href="/profile/{{current_user.username}}/edit/"><button class="btn btn-sm">Edit</button></a>
+        <a href="/profile/{{current_user.username}}/delete/" style="color: red;"><button class="btn btn-sm">Delete</button></a>
         {% endif %}
         {% if profile in user_following%}
-        <a href="/unfollow/{{ profile.id }}/"><button>Unfollow -</button></a>
+        <a href="/unfollow/{{ profile.id }}/"><button class="btn btn-sm">Unfollow</button></a>
         {% elif profile != request.user %}
         <a href="/follow/{{ current_user.id }}/"><button>Follow +</button></a>
         {% endif %}
@@ -33,9 +33,9 @@
 
 
 <div class="row">
-<div class='col-md-5'>
+<div class='col-md-6'>
 {% if request.user.is_authenticated and request.user == current_user %}
-<h4> Your Notices</h4>
+<h4 class="text-center"> Your Notices</h4>
 {% else %}
 <h4>{{current_user.username}} Notices</h4>
 {% endif %}
@@ -58,8 +58,8 @@
             {% endif %}
             <p class="card-text">{{notice.post_date}}</p>
             {% if request.user.is_authenticated and request.user == notice.creator %}
-            <a href="/notice/{{notice.id}}/edit/" class="card-link">Edit</a>
-            <a href="/notice/{{notice.id}}/delete/" class="card-link" style="color: red;">Delete</a>
+            <a href="/notice/{{notice.id}}/edit/" class="card-link"><button class="btn btn-sm">Edit</button></a>
+            <a href="/notice/{{notice.id}}/delete/" class="card-link" style="color: red;"><button class="btn btn-sm">Delete</button></a>
             {% endif %}
         </div>  
         {% endfor %}
@@ -68,7 +68,7 @@
 
 
 
-<div class='col-md-5'>
+<div class='col-md-6'>
     {% if request.user.is_authenticated and request.user == current_user %}
     <h4 style="color: #264563;" class='text-center'> Your Post</h4>
     {% else %}
@@ -82,19 +82,19 @@
             <p class="card-text">{{post.body}}</p>
             <p class="card-text">{{post.post_date}}</p>
             {% if request.user.is_authenticated and request.user == post.creator %}
-            <a href="/post/{{post.id}}/edit/" class="card-link">Edit</a>
-            <a href="/post/{{post.id}}/delete/" class="card-link">Delete</a>
+            <a href="/post/{{post.id}}/edit/" class="card-link"><button class="btn btn-sm">Edit</button></a>
+            <a href="/post/{{post.id}}/delete/" class="card-link"><button class="btn btn-sm">Delete</button></a>
             {% endif %}
         </div>
-        <div class="card-footer">
-          <button type="button" class="btn ">
-            <a href="/posts/{{post.id}}/" style="color: white;">Reply</a>
-          </button>
-          </div>  
-    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn ">
+                        <a href="/posts/{{post.id}}/" style="color: white;">Reply</a>
+                        </button>
+                    </div>  
+                </div>
     {% endfor %}
+            </div>
         </div>
-    </div>
     </div>
 
 

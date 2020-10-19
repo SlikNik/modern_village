@@ -47,7 +47,7 @@
     </div>
   </div>
 <br/>
-<h2 class='title2'>All {{types}} Village Notices</h2>
+<h2 class='title2'>{{types}} Village Notices</h2>
 
 <div class="container">
   <div class="row">
@@ -75,7 +75,7 @@
           <h5 class="card-title" style="color: red;"><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h5>
           {% else %}
           <div class="notice-title">
-            <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
+            <h5 class="card-title" style="color: #264653;"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
           </div>
           {% endif %}
           <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
@@ -86,8 +86,8 @@
           {% endif %}
           <p class="card-text">{{notice.post_date}}</p>
           {% if request.user.is_authenticated and request.user == notice.creator %}
-          <a href="/notice/{{notice.id}}/edit/" class="card-link">Edit</a>
-          <a href="/notice/{{notice.id}}/delete/" class="card-link">Delete</a>
+          <a href="/notice/{{notice.id}}/edit/" class="card-link"><button class="btn btn-sm">Edit</button></a>
+          <a href="/notice/{{notice.id}}/delete/" class="card-link"><button class="btn btn-sm">Delete</button></a>
           {% endif %}
         </div>
       </div>

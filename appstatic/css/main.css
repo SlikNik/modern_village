@@ -62,16 +62,11 @@ img.fas {
     border-bottom: 1px solid white;
     margin-bottom: -1px;
 }
-.weatherWidget{
-    color: white;
-    position: absolute;
-    top: 350px;
-    right: 20px;
-    font-family: "Roboto"!important;
-}
+
 button {
     background-color: orange!important;
     color: white!important;
+    margin-bottom: 5px;
 }
 button.navbar-toggler {
     background-color: none!important;
@@ -126,6 +121,9 @@ h3.title3 {
 div.notice-title {
     color: #264653!important;
 }
+h5.card-title {
+    color: #264653!important;
+}
 @media only screen and (max-width: 1000px) {
     nav.navbar {
         background-color: rgba(255, 254, 242, 0.8);
@@ -152,5 +150,5 @@ div.notice-title {
 
     
 }
-/* unneeded change */
+
 
