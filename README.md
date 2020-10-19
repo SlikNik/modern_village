@@ -12,6 +12,3 @@ Poetry
   warnings.warn("DateTimeField %s received a naive datetime (%s)")
 ## ideas
 fix models to notices where the types will be different models that will be foreign keys
-## SuperUser
-username: modernvillage
-password: sardonyx
