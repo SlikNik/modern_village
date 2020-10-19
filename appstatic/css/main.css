@@ -62,13 +62,7 @@ img.fas {
     border-bottom: 1px solid white;
     margin-bottom: -1px;
 }
-.weatherWidget{
-    color: white;
-    position: absolute;
-    top: 350px;
-    right: 20px;
-    font-family: "Roboto"!important;
-}
+
 button {
     background-color: orange!important;
     color: white!important;
