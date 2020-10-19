@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import AddPostForm
+from .forms import AddPostForm, EditPostForm
 from .models import Post
 # Create your views here.
 
@@ -42,6 +42,22 @@ class PostReplyView(LoginRequiredMixin, TemplateView):
         else:
             return HttpResponseRedirect(reverse('chat'))
 
-class PostCommentView(LoginRequiredMixin, TemplateView):
-    def get(self, request, post_id):
-        return render(request, 'commentsview.html', {'data': Post.objects.get(id=post_id)})
+
+def post_edit_view(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        form = EditPostForm(request.POST, instance=post)
+        if form.is_valid:
+            form.save()
+            return HttpResponseRedirect(reverse('chat'))
+    form = EditPostForm(instance=post)
+    if request.user == post.creator:
+        return render(request, 'generic_form.html', {'form': form})
+    return HttpResponseRedirect(reverse('chat'))
+
+
+def post_delete_view(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.user == post.creator:
+        post.delete()
+    return HttpResponseRedirect(reverse('chat'))
