@@ -20,9 +20,6 @@ env/
 venv/
 ENV/
 
-### Secret file
-secrets.env
-
 ### VisualStudioCode ###
 .vscode/
 !.vscode/settings.json

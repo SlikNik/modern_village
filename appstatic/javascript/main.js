@@ -3,7 +3,7 @@
 window.weatherWidgetConfig =  window.weatherWidgetConfig || [];
   window.weatherWidgetConfig.push({
       selector:".weatherWidget",
-      apiKey = process.env.apiKey, //lots of usage? Sign up for your personal key
+      apiKey = OscillatorNode.environ.get('apiKey'), //lots of usage? Sign up for your personal key
       location:"Halsey, OR",//enter an addres
       unitGroup:"us", //"us" or "metric"
       forecastDays:5, //how many days forecast to show
