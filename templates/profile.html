@@ -2,31 +2,31 @@
 {% load static %}
 {% block content %}
 <br/>
-<div class="container">
-    <div class="row">
-        <div col-md-10 style="width: 85%;">
-            <div class="card">
-                <div class="card-body">
-                    <img class="rounded" style="height: 150px; width: 150px;" src="{{current_user.user_pic.url }}" alt="{{ current_user.username }}" />
-                    <h5 class="card-title text-center" style="color: orangered;"><a href="/profile/{{current_user.username}}/" style="color: orangered;">@{{current_user.username}}</a></h5>
-                    <h5 class="card-subtitle mb-2 text-center text-muted">{{current_user.first_name}} {{current_user.last_name}}</h5>
-                    <p class="card-text text-center">Birthday:{{current_user.birthday}}</p>
-                    <p class="card-text text-center">Zipcode:{{current_user.zipcode}}</p>
-                {%if current_user.facebook != Null %}
-                    <p class="card-text"> {{current_user.facebook}}</p>
-                {% endif %}
-                {%if current_user.instagram != Null %}
-                    <p class="card-text"> {{current_user.instagram}}</p>
-                {% endif %}
-                {%if current_user.twitter != Null %}
-                    <p class="card-text"> {{current_user.twitter}}</p>
-                {% endif %}
-                {% if request.user.is_authenticated and request.user == current_user %}
-                    <a href="/profile/{{current_user.username}}/edit/" class="card-link">Edit</a>
-                    <a href="/profile/{{current_user.username}}/delete/" class="card-link" style="color: red;">Delete</a>
-                {% endif %}
-            </div>
-        </div>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <img src="{{current_user.user_pic.url }}" alt="{{ current_user.username }}" />
+        <h5 class="card-title" style="color: orangered;"><a href="/profile/{{current_user.username}}/" style="color: orangered;">@{{current_user.username}}</a></h5>
+        <h5 class="card-subtitle mb-2 text-muted">{{current_user.first_name}} {{current_user.last_name}}</h5>
+        <p class="card-text">Birthday:{{current_user.birthday}}</p>
+        <p class="card-text">Zipcode:{{current_user.zipcode}}</p>
+        {%if current_user.facebook != Null %}
+        <p class="card-text"> {{current_user.facebook}}</p>
+        {% endif %}
+        {%if current_user.instagram != Null %}
+        <p class="card-text"> {{current_user.instagram}}</p>
+        {% endif %}
+        {%if current_user.twitter != Null %}
+        <p class="card-text"> {{current_user.twitter}}</p>
+        {% endif %}
+        {% if request.user.is_authenticated and request.user == current_user %}
+        <a href="/profile/{{current_user.username}}/edit/" class="card-link">Edit</a>
+        <a href="/profile/{{current_user.username}}/delete/" class="card-link" style="color: red;">Delete</a>
+        {% endif %}
+        {% if profile in user_following%}
+        <a href="/unfollow/{{ profile.id }}/"><button>Unfollow -</button></a>
+        {% elif profile != request.user %}
+        <a href="/follow/{{ current_user.id }}/"><button>Follow +</button></a>
+        {% endif %}
     </div>
 </div>
 

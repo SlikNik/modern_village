@@ -8,6 +8,9 @@ __pycache__/
 # pyenv
 .python-version
 
+# secret files
+secrets.env
+
 # Environments
 .env
 .venv
