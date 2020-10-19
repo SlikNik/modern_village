@@ -1,0 +1,137 @@
+{% extends "base.html" %} 
+{% load static %}
+{% load mptt_tags %} 
+{% block content %}
+<br/>
+<br/>
+<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#postModal">
+    Add Post
+</button>
+<div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="postModalLabel">Add Post</h5>
+          <button type="button" class="close btn btn-sm" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="" method="POST" style="color: orangered;">
+        <div class="modal-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-sm">Save changes</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<br/>
+<br/>
+<h3 class="title3">Chat</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Important Community Numbers</h5>
+          <p  class="card-text">Newtown County Sherrif<br>541-541-1000</p>
+          <p class="card-text">Fire and Rescue non emergency<br>541-541-1010</p>
+          <p class="card-text">School District 109J<br>541-541-3009</p>
+          <p class="card-text">Library Main Branch<br>541-541-0975</p>
+          <p class="card-text">Bookmobile Schedule<br>541-541-3221</p>
+          <p class="card-text">Neighborhood Event Center<br>541-542-2001</p>
+          <p class="card-text">Neighborhood Director<br>541-542-6930</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+     {% recursetree data %} 
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-subtitle mb-2 text-muted">{{node.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{node.creator}}</h6>
+            <p class="card-text">{{node.body}}</p>
+            <p class="card-text">{{node.post_date}}</p>
+            {% if request.user.is_authenticated and request.user == node.creator %}
+            <a href="/posts/{{node.id}}/edit/" class="card-link"><button class="btn btn-sm">Edit</button></a>
+            <a href="/posts/{{node.id}}/del/" class="card-link"><button class="btn btn-sm">Delete</button></a>
+            {% endif %}
+          </div>
+            <div class="card-footer">
+              <button type="button" class="btn btn-sm">
+                <a href="/posts/{{node.id}}/" style="color: white;">Reply</a>
+              </button>
+              {% if not node.is_leaf_node %}
+    <ul class="children">
+      <button  class="btn btn-sm" onclick="myFunction({{node.id}})">Show Replies</button>
+      <div id="{{node.id}}DIV" style="display: none">{{ children }}</div>
+    </ul>
+    {% endif %}
+            </div>  
+        </div>
+        {% endrecursetree %}
+      </div>
+
+
+
+<div class="col-md-2">
+  <div class="card" style="width: 15rem;">
+    <img src="/static/images/grocery.jpg" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">Sam's Grocery & Deli</h5>
+      <p class="card-text">Local groceries, best prices! Come on in!</p>
+      <p class="card-text">M-Sa 7am - 7pm, Closed Sundays</p>
+      <p class="card-text">1540 Main St.</p>
+    </div>
+  </div>
+  
+    <div class="card"style="width: 15rem;">
+      <img src="/static/images/fabric-store-logo.png" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">The Sewcial Lounge</h5>
+          <p class="card-text">Weekly specials, and mystery bags!</p>
+          <p class="card-text">New Fabrics weekly</p>
+          <p class="card-text">M-Sa 9am - 5pm</p>
+          <p class="card-text">777 1st Street</p>
+        </div>
+    </div>
+        
+    <div class="card" style="width: 15rem;">
+      <img src="/static/images/pet-shop.webp" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Fido<s></s></h5>
+          <p class="card-text">Daily hours: 8am to 9pm</p>
+          <p class="card-text">649 2nd Ave.</p>
+        </div>
+    </div>
+        
+      
+    
+    
+      
+  <div class="card" style="width: 15rem">
+    <img src="/static/images/car-dealership.jpg" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Slick's Cars</h5>
+        <p class="card-text">Monday through Saturday 8am</p>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+<br/>
+<script>
+  function myFunction(id) {
+    var x = document.getElementById(id + "DIV");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
+{% endblock %}

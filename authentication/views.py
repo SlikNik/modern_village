@@ -13,11 +13,11 @@ def login_view(request):
             check_user = authenticate(request, username=data.get('username'), password=data.get('password'))
             if check_user:
                 login(request, check_user)
-                return HttpResponseRedirect(reverse('userhomepage'))
+                return HttpResponseRedirect(reverse('homepage'))
                 # return HttpResponseRedirect(request.GET.get( 'next',reverse('homepage')))
       
     form = LoginForm()
-    return render(request, 'generic_form.html', {'form': form, 'login': 'active'})
+    return render(request, 'generic_form.html', {'form': form, 'Type': 'Login to the Village!'})
 
 def logout_view(request):
     logout(request)

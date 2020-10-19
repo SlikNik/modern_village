@@ -1,0 +1,154 @@
+/* colors: 
+#264653
+#2A9D8F
+#e9C46A
+#F4A261
+#E76F51 */
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #FEFAE0;
+}
+
+.jumbotron {
+    background-image: url('/static/images/village.jpg');
+    font-family: "Shadows Into Light";
+    height: 70vh;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    border-radius: 0px!important;
+    border-bottom: 1px solid #264653;
+}
+.jumbotron h1 {
+    margin: 15px 0;
+}
+.intro {
+    padding-top: 160px;
+}
+h1.title {
+    font-size: 75px;
+    font-weight: bold;
+    color: white;
+    margin-top:50px;
+}
+p.motto {
+    color: white;
+}
+
+.navbar-nav a{
+    color: white;
+    font-weight: 600;
+    margin: 0 20px;
+    margin-top: 10px;
+    border: none!important;
+    overflow: hidden;
+}
+nav.navbar {
+   position: absolute; 
+}
+img.fas {
+    background-color: rgba(241, 208, 145, 0.8);
+}
+
+.nav-link:hover {
+    font-weight: 800;
+    border-bottom: 1px solid white;
+    margin-bottom: -1px;
+}
+
+button {
+    background-color: orange!important;
+    color: white!important;
+    margin-bottom: 5px;
+}
+button.navbar-toggler {
+    background-color: none!important;
+}
+.card-link {
+  color: orange; 
+}
+.card {
+    background-color: white;
+    margin-bottom: 10px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    /* padding: 10px; */
+    
+}
+img.rounded {
+  object-fit: cover;
+  border-radius: 50%!important;
+  height: 150px;
+  width: 150px;
+  overflow: hidden;
+  border: 1px solid #264653
+}
+
+.layout {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    background: rgb(255,254,242);
+    grid-template-columns: 250px 500px 250px;
+    gap: 10px;
+}
+img.logo {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    top: 20%;
+    left: 39%;
+}
+.important-numbers{
+    background: white;
+    border: 2px solid brown;
+}
+h2.title2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+h3.title3 {
+    text-align: center;
+    color: #264653;
+    margin-top: 10px;
+}
+div.notice-title {
+    color: #264653!important;
+}
+h5.card-title {
+    color: #264653!important;
+}
+@media only screen and (max-width: 1000px) {
+    nav.navbar {
+        background-color: rgba(255, 254, 242, 0.8);
+        
+    }
+    .navbar-nav a {
+        color: orangered;
+        margin: 0px 5px 0px 17px;
+    
+    }
+}
+@media only screen and (max-width: 600px) {
+    .jumbotron h1 {
+        font-size: 26px;
+        line-height: 1.7;
+    }
+    .intro {
+        padding-top: 100px;
+    }
+    .intro img {
+        width: 200px;
+        padding-top: 50px;
+    }
+
+    
+}
+
+

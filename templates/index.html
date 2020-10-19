@@ -1,10 +1,29 @@
-{% extends "base.html" %}
+a{% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="hero-image">
-    <div class="hero-text">
-        <h2>Welcome to the Modern Village!<span class="icon-emo-happy" style="color: orangered;"></span></h2>
-        <p class="lead">
-        If you already have an account, go ahead and <a href="{% url 'login' %}" style="color: orange;">log in</a>. If you are new to the village, get started
-        by creating a <a href="{% url 'employee_signup' %}" style="color: orange;">an account</a>.
-        </p>
+{% if request.user.is_authenticated %}
+<div class="card mb-3" style="color: orangered;">
+  <div class="card-body">
+      <h2>Welcome to the Modern Village!<span style="color: orangered;"></span></h2>
+      <p class="lead">
+          Hope you are loving it and found some great resources. Please follow us on <a href="www.facebook.com">facebook!</a>
+      </p>
+  </div>
+</div>
+{% else %}
+<div class="card mb-3" style="color: orangered;">
+  <div class="card-body">
+      <h2>Welcome to the Modern Village!<span style="color: orangered;"></span></h2>
+      <p class="lead">
+      If you already have an account, go ahead and <a href="{% url 'loginview' %}" style="color: orange;">log in</a>. If you are new to the village, get started
+      by creating <a href="{% url 'signupview' %}" style="color: orange;">an account</a>.
+      </p>
+  </div>
+</div>
+
+
+  {% endif %}
+  
 {% endblock %}
+
+
