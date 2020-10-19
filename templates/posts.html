@@ -27,13 +27,17 @@
             </div>
         </form>
       </div>
+<<<<<<< HEAD
+=======
+      
+>>>>>>> 97a8f107eafe08b8172a1f1df71274a779d9362f
     </div>
   </div>
 <br/>
 <br/>
+<h3 class="title3">Chat</h3>
 <div class="container">
   <div class="row">
-    <!-- <h3 class="title3">Chat</h3> -->
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
@@ -48,6 +52,7 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
      {% recursetree data %} 
       <div class="col-md-6">
         <div class="card">
@@ -72,59 +77,83 @@
         </div>
       </div>
        {% endrecursetree %}
-
-        <div class="col-md-2">
-          <div class="card" style="width: 15rem;">
-            <img src="/static/images/grocery.jpg" class="card-img-top" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Sam's Grocery & Deli</h5>
-              <p class="card-text">Local groceries, best prices! Come on in!</p>
-              <p class="card-text">M-Sa 7am - 7pm, Closed Sundays</p>
-              <p class="card-text">1540 Main St.</p>
-            </div>
-          </div>
-        
-      
-        
-        
-        
-          <div class="card"style="width: 15rem;">
-            <img src="/static/images/fabric-store-logo.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">The Sewcial Lounge</h5>
-              <p class="card-text">Weekly specials, and mystery bags!</p>
-                <p class="card-text">New Fabrics weekly</p>
-                <p class="card-text">M-Sa 9am - 5pm</p>
-                <p class="card-text">777 1st Street</p>
-            </div>
-          </div>
-        
-      
-        
-      
-         
-        <div class="card" style="width: 15rem;">
-            <img src="/static/images/pet-shop.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Fido<s></s></h5>
-              <p class="card-text">Daily hours: 8am to 9pm</p>
-              <p class="card-text">649 2nd Ave.</p>
-            </div>
-          </div>
-        
-      
-    
-    
-      
-        <div class="card" style="width: 15rem">
-            <img src="/static/images/car-dealership.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Slick's Cars</h5>
-              <p class="card-text">Monday through Saturday 8am</p>
-            </div>
-          </div>
-        </div>
+=======
+  
+    <div class="col-md-6">
+    {% recursetree data %}
+  <div class="card ">
+    <div class="card-body">
+      <h5 class="card-subtitle mb-2 text-muted">{{node.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{node.creator}}/">{{node.creator}}</a></h6>
+      <p class="card-text">{{node.body}}</p>
+      <p class="card-text">{{node.post_date}}</p>
+      {% if request.user.is_authenticated and request.user == node.creator %}
+      <a href="/post/{{node.id}}/edit/" class="card-link">Edit</a>
+      <a href="/post/{{node.id}}/delete/" class="card-link">Delete</a>
+      {% endif %}
+    </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-primary">
+      <a href="/posts/{{node.id}}/" style="color: white;">Reply</a>
+    </button>
+    {% if not node.is_leaf_node %}
+    <div class="children">
+      <button type="button" class="btn btn-primary" onclick="myFunction({{node.id}})">Show Replies</button>
+      <div id="{{node.id}}DIV" style="display: none">{{ children }}</div>
+    </div>
+    {% endif %}
   </div>
+</div>
+{% endrecursetree %}
+</div>
+>>>>>>> 97a8f107eafe08b8172a1f1df71274a779d9362f
+
+
+
+<div class="col-md-2">
+  <div class="card" style="width: 15rem;">
+    <img src="/static/images/grocery.jpg" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">Sam's Grocery & Deli</h5>
+      <p class="card-text">Local groceries, best prices! Come on in!</p>
+      <p class="card-text">M-Sa 7am - 7pm, Closed Sundays</p>
+      <p class="card-text">1540 Main St.</p>
+    </div>
+  </div>
+  
+    <div class="card"style="width: 15rem;">
+      <img src="/static/images/fabric-store-logo.png" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">The Sewcial Lounge</h5>
+          <p class="card-text">Weekly specials, and mystery bags!</p>
+          <p class="card-text">New Fabrics weekly</p>
+          <p class="card-text">M-Sa 9am - 5pm</p>
+          <p class="card-text">777 1st Street</p>
+        </div>
+    </div>
+        
+    <div class="card" style="width: 15rem;">
+      <img src="/static/images/pet-shop.webp" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Fido<s></s></h5>
+          <p class="card-text">Daily hours: 8am to 9pm</p>
+          <p class="card-text">649 2nd Ave.</p>
+        </div>
+    </div>
+        
+      
+    
+    
+      
+  <div class="card" style="width: 15rem">
+    <img src="/static/images/car-dealership.jpg" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Slick's Cars</h5>
+        <p class="card-text">Monday through Saturday 8am</p>
+      </div>
+  </div>
+</div>
+</div>
 </div>
 <br/>
 <script>
@@ -137,4 +166,8 @@
     }
   }
 </script>
+<<<<<<< HEAD
 {% endblock %}
+=======
+{% endblock %}
+>>>>>>> 97a8f107eafe08b8172a1f1df71274a779d9362f

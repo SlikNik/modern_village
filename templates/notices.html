@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %} {%load static %} {% block content %}
 <body>
   <br />
@@ -8,6 +9,14 @@
     data-toggle="modal"
     data-target="#noticeModal"
   >
+=======
+{% extends "base.html" %}
+{%load static %}
+{% block content %}
+<br/>
+<br/>
+<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#noticeModal">
+>>>>>>> 97a8f107eafe08b8172a1f1df71274a779d9362f
     Add Notice
   </button>
   <div
@@ -46,10 +55,9 @@
       </div>
     </div>
   </div>
-  </section>
 <br/>
 <h2 class='title2'>All {{types}} Village Notices</h2>
-<br/>
+
 <div class="container">
   <div class="row">
     <div class="col-md-3">
@@ -69,8 +77,8 @@
   
 
     <div class="col-md-6">
-  {% for notice in data %}
-      <div class="card">
+      {% for notice in data %}
+    <div class="card">
       <div class="card-body">
           {% if notice.is_urgent %}
           <h5 class="card-title" style="color: red;"><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h5>
@@ -78,6 +86,7 @@
           <div class="notice-title">
             <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
           </div>
+<<<<<<< HEAD
           {% endif %}
           <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{notice.creator}}</h6>
@@ -90,28 +99,45 @@
           <a href="/notice/{{notice.id}}/edit/" class="card-link">Edit</a>
           <a href="/notice/{{notice.id}}/delete/" class="card-link">Delete</a>
           {% endif %}
+=======
+            {% endif %}
+            <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{notice.creator}}/">{{notice.creator}}</a></h6>
+            <!-- {% if notice.notice_pic %} -->
+            <img src="{{notice.notice_pic.url }}" alt="{{ notice.title }}"/>
+            <!-- {% endif %} -->
+            <p class="card-text">{{notice.body}}</p>
+            {% if notice.price != Null and notice.price != 0.00 %}
+            <p class="card-text"> ${{notice.price|floatformat:2}}</p>
+            {% endif %}
+            <p class="card-text">{{notice.post_date}}</p>
+            {% if request.user.is_authenticated and request.user == notice.creator %}
+            <a href="/notice/{{notice.id}}/edit/" class="card-link">Edit</a>
+            <a href="/notice/{{notice.id}}/delete/" class="card-link">Delete</a>
+            {% endif %}
+>>>>>>> 97a8f107eafe08b8172a1f1df71274a779d9362f
         </div>
       </div>
-      {% endfor %}
+    {% endfor %}
   </div>
-  <br/>  
-    <div class="col-md-2">
-      <div class="card" style="width: 15rem;">
-        <img src="/static/images/grocery.jpg" class="card-img-top" alt="">
+
+   <div class="col-md-3">
+      <div class="card" style="width: 13rem;">
+        <img src="/static/images/grocery.jpg" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Sam's Grocery & Deli</h5>
           <p class="card-text">Local groceries, best prices! Come on in!</p>
           <p class="card-text">M-Sa 7am - 7pm, Closed Sundays</p>
           <p class="card-text">1540 Main St.</p>
-        </div>
       </div>
+    </div>
     
   
     
     
     
-      <div class="card"style="width: 15rem;">
-        <img src="/static/images/fabric-store-logo.png" class="card-img-top" alt="...">
+      <div class="card"style="width: 13rem;">
+        <img src="/static/images/fabric-store-logo.png" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">The Sewcial Lounge</h5>
           <p class="card-text">Weekly specials, and mystery bags!</p>
@@ -125,7 +151,7 @@
     
   
      
-    <div class="card" style="width: 15rem;">
+    <div class="card" style="width: 13rem;">
         <img src="/static/images/pet-shop.webp" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Fido<s></s></h5>
@@ -138,7 +164,7 @@
 
 
   
-    <div class="card" style="width: 15rem">
+  <div class="card" style="width: 13rem">
         <img src="/static/images/car-dealership.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Slick's Cars</h5>
@@ -146,9 +172,9 @@
         </div>
       </div>
     </div>
-  
+
 </div>
 </div> 
+
 {% endblock %}
-</body>
 
