@@ -12,9 +12,11 @@ from post.models import Post
 def index_view(request):
     return render(request, 'index.html')
 
+
 def profile_view(request, username):
     current_user = ModernUsers.objects.filter(username=username).first()
-    notices = Notice.objects.filter(creator=current_user).order_by('-post_date')
+    notices = Notice.objects.filter(
+        creator=current_user).order_by('-post_date')
     posts = Post.objects.filter(creator=current_user).order_by('-post_date')
     profile = ModernUsers.objects.get(id=current_user.id)
     following = request.user.followers.all()
@@ -33,32 +35,34 @@ def unfollow_view(request, user_id):
     return HttpResponseRedirect(reverse("homepage"))
 
 
+
 @login_required
 def profile_edit(request, username):
     current_user = ModernUsers.objects.get(username=username)
     if request.method == 'POST':
-        form = EditProfileForm(request.POST , request.FILES)
+        form = EditProfileForm(request.POST, request.FILES)
         if form.is_valid():
             new_user = form.cleaned_data
-            current_user.user_pic=new_user['user_pic']
-            current_user.first_name=new_user['first_name']
-            current_user.last_name=new_user['last_name']
-            current_user.birthday=new_user['birthday']
-            current_user.age=new_user['age']
-            current_user.address=new_user['address']
-            current_user.city=new_user['city']
-            current_user.zipcode=new_user['zipcode']
-            current_user.facebook=new_user['facebook']
-            current_user.twitter=new_user['twitter']
-            current_user.instagram=new_user['instagram']
-            current_user.user_pic=new_user['user_pic']
+            current_user.user_pic = new_user['user_pic']
+            current_user.first_name = new_user['first_name']
+            current_user.last_name = new_user['last_name']
+            current_user.birthday = new_user['birthday']
+            current_user.age = new_user['age']
+            current_user.address = new_user['address']
+            current_user.city = new_user['city']
+            current_user.zipcode = new_user['zipcode']
+            current_user.facebook = new_user['facebook']
+            current_user.twitter = new_user['twitter']
+            current_user.instagram = new_user['instagram']
+            current_user.user_pic = new_user['user_pic']
             current_user.save()
         return HttpResponseRedirect(reverse('noticedetails', args=[current_user.id]))
-    form = EditProfileForm(initial={'first_name' : current_user.first_name, 'last_name': current_user.last_name, 
-                         'birthday': current_user.birthday, 'age': current_user.age, 'address': current_user.address, 
-                         'city': current_user.city, 'zipcode': current_user.zipcode, 'facebook': current_user.facebook,
-                         'twitter': current_user.twitter, 'instagram': current_user.instagram, 'user_pic': current_user.user_pic})
+    form = EditProfileForm(initial={'first_name': current_user.first_name, 'last_name': current_user.last_name,
+                                    'birthday': current_user.birthday, 'age': current_user.age, 'address': current_user.address,
+                                    'city': current_user.city, 'zipcode': current_user.zipcode, 'facebook': current_user.facebook,
+                                    'twitter': current_user.twitter, 'instagram': current_user.instagram, 'user_pic': current_user.user_pic})
     return render(request, 'generic_form.html', {'form': form, 'Type': 'Updating Profile!'})
+
 
 @login_required
 def profile_delete(request, username):
@@ -67,15 +71,17 @@ def profile_delete(request, username):
         current_user.delete()
     return HttpResponseRedirect(reverse('homepage'))
 
+
 def sign_up_view(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST  ,request.FILES)
+        form = SignUpForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
+            breakpoint()
             new_user = ModernUsers.objects.create_user(
                 user_pic=data.get('user_pic'),
-                username=data.get('username'), 
-                password=data.get('password'), 
+                username=data.get('username'),
+                password=data.get('password'),
                 email=data.get('email'),
                 first_name=data.get('first_name'),
                 last_name=data.get('last_name'),
@@ -94,8 +100,10 @@ def sign_up_view(request):
     form = SignUpForm()
     return render(request, 'generic_form.html',  {'form': form, 'Type': 'Join the Village!'})
 
+
 def handler404(request, exception):
     return render(request, '404.html', status=404)
-    
+
+
 def handler500(request):
     return render(request, '500.html', status=500)
