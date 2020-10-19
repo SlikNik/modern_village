@@ -60,6 +60,14 @@ django-js-asset = "*"
 
 [[package]]
 category = "main"
+description = "Handle .env files"
+name = "dotenv"
+optional = false
+python-versions = "*"
+version = "0.0.5"
+
+[[package]]
+category = "main"
 description = "Python Imaging Library (Fork)"
 name = "pillow"
 optional = false
@@ -110,7 +118,7 @@ python-versions = "*"
 version = "0.10.1"
 
 [metadata]
-content-hash = "4238ca5335247b0787dabad3492f1b44dfc53159cff2f2a7ce13791fb55d8875"
+content-hash = "4acbdf69a68153b6e410065802c5b297299b5ced3af6dd5095b177121b5a5fa6"
 lock-version = "1.0"
 python-versions = "^3.8"
 
@@ -133,6 +141,9 @@ django-js-asset = [
 django-mptt = [
     {file = "django-mptt-0.11.0.tar.gz", hash = "sha256:dfdb3af75ad27cdd4458b0544ec8574174f2b90f99bc2cafab6a15b4bc1895a8"},
     {file = "django_mptt-0.11.0-py2.py3-none-any.whl", hash = "sha256:90eb236eb4f1a92124bd7c37852bbe09c0d21158477cc237556d59842a91c509"},
+]
+dotenv = [
+    {file = "dotenv-0.0.5.tar.gz", hash = "sha256:b58d2ab3f83dbd4f8a362b21158a606bee87317a9444485566b3c8f0af847091"},
 ]
 pillow = [
     {file = "Pillow-7.2.0-cp35-cp35m-macosx_10_10_intel.whl", hash = "sha256:1ca594126d3c4def54babee699c055a913efb01e106c309fa6b04405d474d5ae"},
