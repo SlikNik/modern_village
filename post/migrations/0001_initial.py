@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
 import django.utils.timezone
+import mptt.fields
 
 
 class Migration(migrations.Migration):
@@ -16,17 +17,21 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Notice',
+            name='Post',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type_of', models.CharField(choices=[('NEWS', 'News'), ('TRAFFIC', 'Traffic'), ('ALERT', 'Alert'), ('EVENT', 'Event'), ('OTHER', 'Other')], default='NEWS', max_length=200)),
-                ('title', models.CharField(max_length=100)),
+                ('title', models.CharField(max_length=100, unique=True)),
                 ('body', models.TextField()),
                 ('post_date', models.DateTimeField(default=django.utils.timezone.now)),
-                ('notice_pic', models.ImageField(blank=True, null=True, upload_to='')),
-                ('price', models.FloatField(blank=True, null=True)),
-                ('is_urgent', models.BooleanField()),
+                ('lft', models.PositiveIntegerField(editable=False)),
+                ('rght', models.PositiveIntegerField(editable=False)),
+                ('tree_id', models.PositiveIntegerField(db_index=True, editable=False)),
+                ('level', models.PositiveIntegerField(editable=False)),
                 ('creator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('parent', mptt.fields.TreeForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to='post.post')),
             ],
+            options={
+                'abstract': False,
+            },
         ),
     ]

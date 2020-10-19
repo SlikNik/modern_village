@@ -1,63 +1,87 @@
-{% extends "base.html" %}
-{%load static %}
-{% block content %}
+{% extends "base.html" %} {%load static %} {% block content %}
 <body>
-<br/>
-<br/>
-<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#noticeModal">
+  <br />
+  <br />
+  <button
+    type="button"
+    class="btn btn-sm btn-primary"
+    data-toggle="modal"
+    data-target="#noticeModal"
+  >
     Add Notice
-</button>
-<div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="noticeModalLabel" aria-hidden="true">
+  </button>
+  <div
+    class="modal fade"
+    id="noticeModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="noticeModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="noticeModalLabel">Add Notice</h5>
-          <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+          <button
+            type="button"
+            class="close btn"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <form action="" method="POST">
-        <div class="modal-body">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <!-- <button type="submit" style="color: orangered;">Submit</button> -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-save">Save changes</button>
-            </div>
+          <div class="modal-body">
+            {% csrf_token %} {{ form.as_p }}
+            <!-- <button type="submit" style="color: orangered;">Submit</button> -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-close" data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-save">Save changes</button>
+          </div>
         </form>
       </div>
     </div>
   </div>
-<br/>
-<h2>All {{types}} Village Notices</h2>
-<br/>
-    {% for notice in data %}
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            {% if notice.is_urgent %}
-            <h5 class="card-title" style="color: red;"><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h5>
-            {% else %}
-            <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
-            {% endif %}
-            <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{notice.creator}}/">{{notice.creator}}</a></h6>
-            <!-- {% if notice.notice_pic %} -->
-            <img src="{{notice.notice_pic.url }}" alt="{{ notice.title }}"/>
-            <!-- {% endif %} -->
-            <p class="card-text">{{notice.body}}</p>
-            {% if notice.price != Null and notice.price != 0.00 %}
-            <p class="card-text"> ${{notice.price|floatformat:2}}</p>
-            {% endif %}
-            <p class="card-text">{{notice.post_date}}</p>
-            {% if request.user.is_authenticated and request.user == notice.creator %}
-            <a href="/notice/{{notice.id}}/edit/" class="card-link">Edit</a>
-            <a href="/notice/{{notice.id}}/delete/" class="card-link">Delete</a>
-            {% endif %}
-        </div>
+  <br />
+  <h2>All {{types}} Village Notices</h2>
+  <br />
+  {% for notice in data %}
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      {% if notice.is_urgent %}
+      <h5 class="card-title" style="color: red">
+        <a href="/notice/{{notice.id}}/" style="color: red"
+          >Urgent-{{notice.type_of}}</a
+        >
+      </h5>
+      {% else %}
+      <h5 class="card-title">{{notice.type_of}}</h5>
+      {% endif %}
+      <h5 class="card-subtitle mb-2 text-muted">
+        <a href="/notice/{{notice.id}}/">{{notice.title}}</a>
+      </h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        <a href="/profile/{{notice.creator}}/">{{notice.creator}}</a>
+      </h6>
+      <!-- {% if notice.notice_pic %} -->
+      <img src="{{notice.notice_pic.url }}" alt="{{ notice.title }}" />
+      <!-- {% endif %} -->
+      <p class="card-text">{{notice.body}}</p>
+      {% if notice.price != Null and notice.price != 0.00 %}
+      <p class="card-text">${{notice.price|floatformat:2}}</p>
+      {% endif %}
+      <p class="card-text">{{notice.post_date}}</p>
+      {% if request.user.is_authenticated and request.user == notice.creator %}
+      <a href="/notice/{{notice.id}}/edit/" class="card-link">Edit</a>
+      <a href="/notice/{{notice.id}}/delete/" class="card-link">Delete</a>
+      {% endif %}
     </div>
-    <br/>
-    {% endfor %}
-    </body>
+  </div>
+  <br />
+  {% endfor %}
+</body>
 {% endblock %}
