@@ -51,14 +51,6 @@ category = "main"
 description = "Handle .env files"
 name = "dotenv"
 optional = false
-python-versions = "*"
-version = "0.0.5"
-
-[[package]]
-category = "main"
-description = "Python Imaging Library (Fork)"
-name = "pillow"
-optional = false
 python-versions = ">=3.5"
 version = "7.2.0"
 
