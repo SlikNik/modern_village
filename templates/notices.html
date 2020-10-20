@@ -4,7 +4,7 @@
   <br />
   <button
     type="button"
-    class="btn btn-sm btn-primary"
+    class="btn btn-sm "
     data-toggle="modal"
     data-target="#noticeModal"
   >
@@ -24,7 +24,7 @@
           <h5 class="modal-title" id="noticeModalLabel">Add Notice</h5>
           <button
             type="button"
-            class="close btn"
+            class="close btn "
             data-dismiss="modal"
             aria-label="Close"
           >
@@ -75,11 +75,13 @@
           <h5 class="card-title" style="color: red;"><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h5>
           {% else %}
           <div class="notice-title">
-            <h5 class="card-title" style="color: #264653;"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
+            <h5 class="card-title"><a href="/notice/{{notice.id}}/">{{notice.type_of}}</a></h5>
           </div>
           {% endif %}
-          <h5 class="card-subtitle mb-2 text-muted">{{notice.title}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{notice.creator}}</h6>
+          <h5 class="card-subtitle mb-2 text-muted" style="color: #264653;">{{notice.title}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <a href="/profile/{{notice.creator}}/" style="color: orangered;">{{notice.creator}}</a>
+          </h6>
           <p class="card-text">{{notice.body}}</p>
           {% if notice.price != Null and notice.price != 0.00 %}
           <p class="card-text"> ${{notice.price|floatformat:2}}</p>

@@ -62,7 +62,12 @@ img.fas {
     border-bottom: 1px solid white;
     margin-bottom: -1px;
 }
-
+a.dropdown-item:focus{
+    background-color:#fff transparent !important;
+}
+a#dropdown-item:hover {
+    background-color:#fff transparent !important; 
+}
 button {
     background-color: orange!important;
     color: white!important;

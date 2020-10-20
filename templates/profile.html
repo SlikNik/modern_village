@@ -38,13 +38,13 @@
 
 <div class="row">
 <div class='col-md-6'>
-{% if request.user.is_authenticated and request.user == current_user %}
-<h4 class="text-center"> Your Notices</h4>
-{% else %}
-<h4>{{current_user.username}} Notices</h4>
-{% endif %}
-<div class="card">
-{% for notice in notices %}
+    {% if request.user.is_authenticated and request.user == current_user %}
+    <h4 class="text-center"> Your Notices</h4>
+    {% else %}
+    <h4>{{current_user.username}} Notices</h4>
+    {% endif %}
+    {% for notice in notices %}
+        <div class="card">
         <div class="card-body">
             {% if notice.is_urgent %}
             <h5 class="card-title" style="color: red;"><a href="/notice/{{notice.id}}/" style="color: red;">Urgent-{{notice.type_of}}</a></h5>
@@ -66,8 +66,8 @@
             <a href="/notice/{{notice.id}}/delete/" class="card-link" style="color: red;"><button class="btn btn-sm">Delete</button></a>
             {% endif %}
         </div>  
-        {% endfor %}
     </div>
+        {% endfor %}
 </div>
 
 
@@ -79,7 +79,7 @@
     <h4 class="text-center" style="color: #264563;">{{current_user.username}} Post</h4>
     {% endif %}
     {% for post in posts %}
-    <div class="card">
+        <div class="card">
         <div class="card-body">
             <h5 class="card-subtitle mb-2 text-muted">{{post.title}}</h5>
             <h6 class="card-subtitle mb-2 text-muted"><a href="/profile/{{post.creator}}/">{{post.creator}}</a></h6>
@@ -99,7 +99,7 @@
     {% endfor %}
             </div>
         </div>
-    </div>
+    
 
 
 {% endblock %}
